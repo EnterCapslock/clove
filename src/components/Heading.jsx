@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../css modules/Heading.module.css"; 
 import tempPic from "../images/flower.jpg";
+import CloveLogo from "../images/CloveLogo.png";
 
 export default function Heading() {
   return (
@@ -8,11 +9,13 @@ export default function Heading() {
       {/* ====== HEADER (Unchanged) ====== */}
       <header className={styles.header}>
         <div className={styles.logoSection}>
-          <h1 className={styles.logo}>CLOVE</h1>
+          <h1 className={styles.logo}>CLOVE
+          <img src={CloveLogo} alt="Clover Logo" className={styles.logoImg} /> 
+          </h1>
         </div>
         <div className={styles.headerButtons}>
-          <button className={styles.learnBtn}>Sign Up</button>
-          <button className={styles.joinBtn}>Log in</button>
+          <button className={styles.signUpBtnBtn}>Sign Up</button>
+          <button className={styles.loginBtnBtn}>Login</button>
         </div>
       </header>
 
@@ -41,7 +44,7 @@ export default function Heading() {
               <img
                 src={tempPic}
                 className={styles.heroImg}
-                alt="Hero picture"
+                alt="imgBig"
               />
             </div>
           </div>

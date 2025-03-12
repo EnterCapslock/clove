@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import styles from "../css modules/Forms.module.css";
+import CloveLogo from "../images/CloveLogo.png"; 
 
 export default function Form() {
   // Set default to Sign Up (false = Sign Up, true = Login)
@@ -10,7 +11,11 @@ export default function Form() {
     <div className={styles.page}>
       {/* Header with Logo */}
       <header className={styles.header}>
-        <div className={styles.logo}>CLOVE</div>
+        <div className={styles.logoSection}>
+          <h1 className={styles.logo}>CLOVE
+          <img src={CloveLogo} alt="Clover Logo" className={styles.logoImg} /> 
+          </h1>
+        </div>
       </header>
 
       {/* Main Content: Centered Form */}
