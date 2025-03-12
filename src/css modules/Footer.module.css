@@ -63,6 +63,11 @@
     height: auto;
   }
   
+  .logoSection {
+    display: flex;
+    align-items: center;
+  }
+
   /* If using text logo instead of image */
   .logoText {
     font-size: 24px;
@@ -70,9 +75,9 @@
     margin: 0;
   }
   
-  .logoIcon {
-    font-size: 24px;
-    color: #A6AAFB;
+  .logoImg {
+    width: 25px;  
+    height: auto;
     margin-left: 8px;
   }
   

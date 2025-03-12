@@ -23,8 +23,14 @@
   align-items: center;
 }
 
+.logoImg {
+  width: 50px;  
+  height: auto;
+  margin-left: 8px;
+}
+
 .logo {
-  width: 80px;
+  width: 500px;
   height: 40px;
   font-size: 48px;
   font-weight: bold;
@@ -46,25 +52,25 @@
   transition: all 0.3s ease-in-out;
 }
 
-.joinBtn {
+.loginBtnBtn {
   background-color: #A6AAFB;
   color: white;
   border-radius: 5px;
 }
 
-.joinBtn:hover {
+.loginBtnBtn:hover {
   background-color: #8c90e6;
   transform: scale(1.1);
 }
 
-.learnBtn {
+.signUpBtnBtn {
   background-color: transparent;
   color: #A6AAFB;
   border: 2px solid #A6AAFB;
   border-radius: 5px;
 }
 
-.learnBtn:hover {
+.signUpBtnBtn:hover {
   background-color: #A6AAFB;
   color: white;
   transform: scale(1.1);
