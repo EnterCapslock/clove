@@ -1,21 +1,39 @@
 import React from "react";
-import styles from "../css modules/Heading.module.css"; 
-import tempPic from "../images/flower.jpg";
-import CloveLogo from "../images/CloveLogo.png";
+import { useNavigate } from "react-router-dom";
+import styles from "../../css modules/pages/Heading.module.css";
+import tempPic from "../../images/flower.jpg";
+import CloveLogo from "../../images/CloveLogo.png";
 
 export default function Heading() {
+  const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    navigate("/LoginSignupPage");
+  };
+
   return (
     <div className={styles.page}>
       {/* ====== HEADER (Unchanged) ====== */}
       <header className={styles.header}>
         <div className={styles.logoSection}>
-          <h1 className={styles.logo}>CLOVE
-          <img src={CloveLogo} alt="Clover Logo" className={styles.logoImg} /> 
+          <h1 className={styles.logo}>
+            CLOVE
+            <img src={CloveLogo} alt="Clover Logo" className={styles.logoImg} /> 
           </h1>
         </div>
         <div className={styles.headerButtons}>
-          <button className={styles.signUpBtnBtn}>Sign Up</button>
-          <button className={styles.loginBtnBtn}>Login</button>
+          <button
+             onClick={() => navigate("/LoginSignupPage", { state: { isLogin: false } })}
+             className={styles.signUpBtnBtn}
+          >
+            Sign Up
+          </button>
+          <button
+            onClick={() => navigate("/LoginSignupPage", { state: { isLogin: true } })}
+            className={styles.loginBtnBtn}
+          >
+            Login
+          </button>
         </div>
       </header>
 
@@ -36,16 +54,12 @@ export default function Heading() {
               </p>
               <div className={styles.heroButtons}>
                 <button className={styles.learnMoreBtn}>Learn More</button>
-                <button className={styles.signUpBtn}>Sign Up</button>
+                <button className={styles.signUpBtn} onClick={handleRedirect}>Sign Up</button>
               </div>
             </div>
             {/* Right side image */}
             <div className="col-md-6 mt-4 mt-md-0 text-center">
-              <img
-                src={tempPic}
-                className={styles.heroImg}
-                alt="imgBig"
-              />
+              <img src={tempPic} className={styles.heroImg} alt="Large visual" />
             </div>
           </div>
         </div>

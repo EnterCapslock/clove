@@ -6,7 +6,7 @@ import Footer from "./Footer";
 
 export default function LandingPage() {
   return (
-    <div className="Landing Page">
+    <div className="LandingPage">
       <Heading />
       <Features />
       <Team />

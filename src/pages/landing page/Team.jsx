@@ -1,21 +1,21 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import styles from "../css modules/Team.module.css";
+import styles from "../../css modules/pages/Team.module.css";
 
 // Replace these with actual images
-import teamPic1 from "../images/flower.jpg";
-import teamPic2 from "../images/flower.jpg";
-import teamPic3 from "../images/flower.jpg";
+import teamPic1 from "../../images/flower.jpg";
+import teamPic2 from "../../images/flower.jpg";
+import teamPic3 from "../../images/flower.jpg";
 
 export default function Team() {
   return (
     <section className={styles.teamSection}>
       <div className="container text-center">
         {/* Top Labels */}
-        <p className={styles.teamLabel}>Innovators</p>
+        <p className={styles.teamLabel}>Innovators and RESEARCHERS</p>
         <h2 className={styles.teamHeading}>Our Team</h2>
         <p className={styles.teamSubheading}>
-          Meet the experts driving our educational games.
+          Meet the developers driving our educational prgramming games.
         </p>
 
         {/* Team Members */}
@@ -24,10 +24,10 @@ export default function Team() {
           <div className="col-md-4 d-flex flex-column align-items-center mb-4">
             <img
               src={teamPic1}
-              alt="Alice Johnson"
+              alt="Kerzania Macalde"
               className={styles.teamPhoto}
             />
-            <h3 className={styles.teamName}>Alice Johnson</h3>
+            <h3 className={styles.teamName}>Kerzania Macalde</h3>
             <p className={styles.teamRole}>Game Designer</p>
             <p className={styles.teamDesc}>
               Passionate about creating engaging learning experiences through
@@ -35,7 +35,7 @@ export default function Team() {
             </p>
             <div className={styles.teamIcons}>
               <a
-                href="https://linkedin.com/in/alicejohnson"
+                href="https://linkedin.com/in/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.iconLink}
@@ -63,10 +63,10 @@ export default function Team() {
           <div className="col-md-4 d-flex flex-column align-items-center mb-4">
             <img
               src={teamPic2}
-              alt="Mark Smith"
+              alt="Rexie Ryl Nadela"
               className={styles.teamPhoto}
             />
-            <h3 className={styles.teamName}>Mark Smith</h3>
+            <h3 className={styles.teamName}>Rexie Ryl Nadela</h3>
             <p className={styles.teamRole}>Lead Developer</p>
             <p className={styles.teamDesc}>
               Expert in coding and developing adaptive learning technologies for
@@ -74,7 +74,7 @@ export default function Team() {
             </p>
             <div className={styles.teamIcons}>
               <a
-                href="https://linkedin.com/in/marksmith"
+                href="https://linkedin.com/in/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.iconLink}
@@ -102,17 +102,17 @@ export default function Team() {
           <div className="col-md-4 d-flex flex-column align-items-center mb-4">
             <img
               src={teamPic3}
-              alt="Sarah Lee"
+              alt="Michael Saymo"
               className={styles.teamPhoto}
             />
-            <h3 className={styles.teamName}>Sarah Lee</h3>
+            <h3 className={styles.teamName}>Michael Saymo</h3>
             <p className={styles.teamRole}>UX Researcher</p>
             <p className={styles.teamDesc}>
               Focused on enhancing user experience through research and testing.
             </p>
             <div className={styles.teamIcons}>
               <a
-                href="https://linkedin.com/in/sarahlee"
+                href="https://linkedin.com/in/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.iconLink}

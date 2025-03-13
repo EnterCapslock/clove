@@ -1,32 +1,51 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import styles from "../css modules/Forms.module.css";
-import CloveLogo from "../images/CloveLogo.png"; 
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
+import styles from "../../css modules/pages/Forms.module.css";
+import CloveLogo from "../../images/CloveLogo.png";
+
+import TermsAndConditions from "../../pages/login signup page/TermsAndConditions";
 
 export default function Form() {
   // Set default to Sign Up (false = Sign Up, true = Login)
-  const [isLogin, setIsLogin] = useState(false);
+  const location = useLocation();
+
+  const [isLogin, setIsLogin] = useState(location.state?.isLogin || false);
+  const [showTerms, setShowTerms] = useState(false);
+  const [email, setEmail] = useState("user@gmail.com"); // Default email
+  const [password, setPassword] = useState("user"); // Default password
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (email === "user@gmail.com" && password === "user") {
+      navigate("/DashboardPage");
+    } else {
+      alert("Invalid email or password");
+    }
+  };
 
   return (
     <div className={styles.page}>
-      {/* Header with Logo */}
+      {/* ===== HEADER ===== */}
       <header className={styles.header}>
         <div className={styles.logoSection}>
-          <h1 className={styles.logo}>CLOVE
-          <img src={CloveLogo} alt="Clover Logo" className={styles.logoImg} /> 
+          <h1 className={styles.logo}>
+            CLOVE
+            <img src={CloveLogo} alt="Clover Logo" className={styles.logoImg} />
           </h1>
         </div>
       </header>
 
-      {/* Main Content: Centered Form */}
+      {/* ===== MAIN CONTENT ===== */}
       <main className={styles.content}>
         <div className={styles.formWrapper}>
-          {/* Toggle Navigation */}
+          {/* Toggle Nav */}
           <div className={styles.toggleNav}>
             <button
-              className={`${styles.toggleButton} ${
-                !isLogin ? styles.active : ""
-              }`}
+              className={`${styles.toggleButton} ${!isLogin ? styles.active : ""}`}
               onClick={() => setIsLogin(false)}
             >
               Sign Up
@@ -39,7 +58,7 @@ export default function Form() {
             </button>
           </div>
 
-          {/* Form Animation */}
+          {/* Motion Animation */}
           <motion.div
             initial={{ opacity: 0, x: isLogin ? 50 : -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -49,17 +68,17 @@ export default function Form() {
             {isLogin ? (
               <div>
                 {/* Login Form */}
-                <h2 className={`${styles.loginHeading}`}>Log In</h2>
-                <p className={`${styles.loginDescription}`}>
-                  Nice to see you again!
-                </p>
-                <form className="space-y-4">
+                <h2 className={styles.loginHeading}>Log In</h2>
+                <p className={styles.loginDescription}>Nice to see you again!</p>
+                <form onSubmit={handleLogin}>
                   <label htmlFor="email">Email*</label>
                   <input
                     type="email"
                     id="email"
                     placeholder="Email"
                     className={styles.formField}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <label htmlFor="password">Password*</label>
                   <input
@@ -67,21 +86,27 @@ export default function Form() {
                     id="password"
                     placeholder="Password"
                     className={styles.formField}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <div className={styles.forgotPassword}>
-                    <a href="/forgot-password" className={styles.forgotPassword}>Forgot your password?</a>
+                    <a href="/forgot-password" className={styles.forgotPassword}>
+                      Forgot your password?
+                    </a>
                   </div>
-                  <button className={styles.formButton}>Login</button>
+                  <button type="submit" className={styles.formButton}>
+                    Login
+                  </button>
                 </form>
               </div>
             ) : (
               <div>
                 {/* Sign Up Form */}
-                <h2 className={`${styles.signupHeading}`}>Sign Up</h2>
-                <p className={`${styles.signupDescription}`}>
+                <h2 className={styles.signupHeading}>Sign Up</h2>
+                <p className={styles.signupDescription}>
                   Your journey in programming starts now!
                 </p>
-                <form className="space-y-4">
+                <form>
                   <label htmlFor="name">Name*</label>
                   <input
                     type="text"
@@ -111,10 +136,13 @@ export default function Form() {
                       required
                     />
                     <label htmlFor="termsCheckbox" className={styles.checkboxLabel}>
-                      I agree to the{" "}
-                      <a href="/terms" className={styles.termsLink}>
+                      I have read and agree to the{" "}
+                      <span
+                        className={styles.termsLink}
+                        onClick={() => setShowTerms(true)}
+                      >
                         Terms and Conditions
-                      </a>
+                      </span>
                     </label>
                   </div>
                   <button className={styles.formButton}>Sign Up</button>
@@ -125,10 +153,13 @@ export default function Form() {
         </div>
       </main>
 
-      {/* Footer: Copyright */}
+      {/* ===== FOOTER ===== */}
       <footer className={styles.footer}>
         <p>© 2025 CLOVE</p>
       </footer>
+
+      {/* ===== TERMS MODAL ===== */}
+      {showTerms && <TermsAndConditions onClose={() => setShowTerms(false)} />}
     </div>
   );
 }
