@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "../css modules/Footer.module.css";
-import CloveLogo from "../images/CloveLogo.png";
+import styles from "../../css modules/pages/Footer.module.css";
+import CloveLogo from "../../images/CloveLogo.png";
 
 export default function Footer() {
   return (
@@ -70,10 +70,8 @@ export default function Footer() {
           {/* Left side: Logo or text */}
           <div className={styles.logoSection}>
             {/* <img src={cloveLogo} alt="CLOVE Logo" className={styles.footerLogo} /> */}
-            <h2 className={styles.logoText}>
-              CLOVE 
-            </h2>
-            <img src={CloveLogo} alt="Clover Logo" className={styles.logoImg} /> 
+            <h2 className={styles.logoText}>CLOVE</h2>
+            <img src={CloveLogo} alt="Clover Logo" className={styles.logoImg} />
           </div>
           {/* Right side: Copyright */}
           <div>
