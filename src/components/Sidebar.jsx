@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Container, Nav } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import {
   FaTh,
   FaChartBar,
   FaLayerGroup,
   FaSignOutAlt,
-  FaBars,
 } from "react-icons/fa";
+import { PiSidebarBold } from "react-icons/pi";
 import { Link, useLocation } from "react-router-dom";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import styles from "../css modules/components/Sidebar.module.css";
 
-const Sidebar = () => {
+import CloveLogo from "../images/CloveLogo.png";
+
+export default function Sidebar() {
   const [expanded, setExpanded] = useState(true);
   const location = useLocation();
   const [activeItem, setActiveItem] = useState(location.pathname);
@@ -20,82 +23,113 @@ const Sidebar = () => {
     setActiveItem(location.pathname);
   }, [location]);
 
-  const toggleSidebar = () => {
-    setExpanded(!expanded);
-  };
+  // Update CSS variable for main content shift
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--sidebar-width",
+      expanded ? "250px" : "80px"
+    );
+  }, [expanded]);
 
-  const renderTooltip = (label) => (props) =>
-    (
+  function toggleSidebar() {
+    setExpanded(!expanded);
+  }
+
+  function renderTooltip(label) {
+    return (props) => (
       <Tooltip id={`tooltip-${label}`} {...props}>
         {label}
       </Tooltip>
     );
+  }
 
   return (
     <div
-      className={`d-flex flex-column p-3 text-white bg-dark ${
-        expanded ? "" : "collapsed"
-      }`}
-      style={{ width: expanded ? "250px" : "80px", transition: "width 0.3s" }}
+      className={`${styles.sidebar} ${expanded ? styles.expanded : ""} bg-dark text-white d-flex flex-column`}
     >
-      <div className="d-flex align-items-center mb-4">
-      <FaBars className="text-white cursor-pointer" onClick={toggleSidebar} />
-
-        {expanded && (
-          <h4 className="mb-0 ps-2">
-            CLOVE
-          </h4>
+      {/* Top: Logo & Title */}
+      <div className="d-flex align-items-center justify-content-center mb-3">
+        {expanded ? (
+          // Expanded: show full logo and text
+          <div className={styles.logoSection}>
+            <span className={styles.logoText}>CLOVE</span>
+            <img
+              src={CloveLogo}
+              alt="CLOVE Logo"
+              className={styles.logoImg}
+            />
+          </div>
+        ) : (
+          // Collapsed: only the logo
+          <img
+            src={CloveLogo}
+            alt="CLOVE Logo"
+            className={styles.logoImgCollapsed}
+          />
         )}
       </div>
-      <Nav defaultActiveKey="/" className="flex-column">
+
+      {/* Navigation Links */}
+      <Nav className="flex-column flex-grow-1">
         <OverlayTrigger placement="right" overlay={renderTooltip("Dashboard")}>
           <Nav.Link
             as={Link}
             to="/DashboardPage"
-            className={`nav-item text-white d-flex align-items-center ${
-              activeItem === "/" ? "active" : ""
+            className={`text-white d-flex align-items-center ${styles.navItem} ${
+              activeItem === "/DashboardPage" ? styles.active : ""
             }`}
           >
-            <FaTh className="me-2" /> {expanded && <span>Dashboard</span>}
+            <FaTh className="me-2" />
+            {expanded && <span>Dashboard</span>}
           </Nav.Link>
         </OverlayTrigger>
+
         <OverlayTrigger placement="right" overlay={renderTooltip("Progress")}>
           <Nav.Link
             as={Link}
             to="/progress"
-            className={`nav-item text-white d-flex align-items-center ${
-              activeItem === "/progress" ? "active" : ""
+            className={`text-white d-flex align-items-center ${styles.navItem} ${
+              activeItem === "/progress" ? styles.active : ""
             }`}
           >
-            <FaChartBar className="me-2" /> {expanded && <span>Progress</span>}
+            <FaChartBar className="me-2" />
+            {expanded && <span>Progress</span>}
           </Nav.Link>
         </OverlayTrigger>
+
         <OverlayTrigger placement="right" overlay={renderTooltip("My Deck")}>
           <Nav.Link
             as={Link}
             to="/MyDeckPage"
-            className={`nav-item text-white d-flex align-items-center ${
-              activeItem === "/deck" ? "active" : ""
+            className={`text-white d-flex align-items-center ${styles.navItem} ${
+              activeItem === "/MyDeckPage" ? styles.active : ""
             }`}
           >
-            <FaLayerGroup className="me-2" /> {expanded && <span>My Deck</span>}
+            <FaLayerGroup className="me-2" />
+            {expanded && <span>My Deck</span>}
           </Nav.Link>
         </OverlayTrigger>
-        <div className="mt-auto">
-          <OverlayTrigger placement="right" overlay={renderTooltip("Log out")}>
-            <Nav.Link
-              as={Link}
-              to="/logout"
-              className="nav-item text-white d-flex align-items-center"
-            >
-              <FaSignOutAlt className="me-2" />{" "}
-              {expanded && <span>Log out</span>}
-            </Nav.Link>
-          </OverlayTrigger>
-        </div>
+
+        <OverlayTrigger placement="right" overlay={renderTooltip("Log out")}>
+          <Nav.Link
+            as={Link}
+            to="/logout"
+            className={`text-white d-flex align-items-center ${styles.navItem} mt-3`}
+          >
+            <FaSignOutAlt className="me-2" />
+            {expanded && <span>Log out</span>}
+          </Nav.Link>
+        </OverlayTrigger>
       </Nav>
+
+      {/* Bottom: Toggle Icon */}
+      <div className="mt-auto d-flex justify-content-center mb-3">
+        <PiSidebarBold
+          className={styles.toggleIcon}
+          onClick={toggleSidebar}
+          title="Toggle Sidebar"
+        />
+      </div>
     </div>
   );
-};
-
-export default Sidebar;
+}
