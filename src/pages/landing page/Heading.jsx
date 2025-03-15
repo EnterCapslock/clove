@@ -8,7 +8,7 @@ export default function Heading() {
   const navigate = useNavigate();
 
   const handleRedirect = () => {
-    navigate("/LoginSignupPage");
+    navigate("/login-signup", { state: { isLogin: false } });
   };
 
   return (
@@ -23,13 +23,13 @@ export default function Heading() {
         </div>
         <div className={styles.headerButtons}>
           <button
-             onClick={() => navigate("/LoginSignupPage", { state: { isLogin: false } })}
+             onClick={() => navigate("/login-signup", { state: { isLogin: false } })}
              className={styles.signUpBtnBtn}
           >
             Sign Up
           </button>
           <button
-            onClick={() => navigate("/LoginSignupPage", { state: { isLogin: true } })}
+            onClick={() => navigate("/login-signup", { state: { isLogin: true } })}
             className={styles.loginBtnBtn}
           >
             Login
