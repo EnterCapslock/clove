@@ -1,9 +1,9 @@
+// src/pages/DashboardPage.jsx
 import React, { useState } from "react";
 import { Container, Row, Col, Card, ProgressBar } from "react-bootstrap";
 import { FaFire } from "react-icons/fa";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import "react-calendar/dist/Calendar.css";
-import Sidebar from "../components/Sidebar";
 import styles from "../css modules/pages/Dashboard.module.css";
 
 const skillData = [
@@ -13,12 +13,17 @@ const skillData = [
   { name: "Objects", value: 10, color: "#ff8042" },
 ];
 
-export default function Dashboard() {
+export default function DashboardPage() {
   const [streak] = useState(5);
-  const [loginDays] = useState(["2025-03-10", "2025-03-11", "2025-03-12", "2025-03-13"]);
+  const [loginDays] = useState([
+    "2025-03-10",
+    "2025-03-11",
+    "2025-03-12",
+    "2025-03-13",
+  ]);
 
   function generateStreakGrid() {
-    const days = 35; // 7x5
+    const days = 35; // 7x5 grid
     const today = new Date();
     const grid = [];
 
@@ -26,12 +31,7 @@ export default function Dashboard() {
       const day = new Date();
       day.setDate(today.getDate() - i);
       const dateString = day.toISOString().split("T")[0];
-
-      let status = "missed";
-      if (loginDays.includes(dateString)) {
-        status = "logged-in";
-      }
-
+      let status = loginDays.includes(dateString) ? "logged-in" : "missed";
       grid.push(
         <div
           key={dateString}
@@ -56,7 +56,6 @@ export default function Dashboard() {
 
   return (
     <div className={styles.dashboardWrapper}>
-      <Sidebar />
       <div className={styles.dashboardContent}>
         <Container fluid className="p-4 bg-dark text-white">
           <h2 className="mb-4">Overview</h2>
@@ -85,12 +84,7 @@ export default function Dashboard() {
                     Loading...
                   </div>
                   <div className="mt-auto">
-                    <ProgressBar
-                      now={60}
-                      label={`${60}%`}
-                      animated
-                      variant="success"
-                    />
+                    <ProgressBar now={60} label={`${60}%`} animated variant="success" />
                   </div>
                 </Card.Body>
               </Card>
@@ -122,6 +116,7 @@ export default function Dashboard() {
               </Card>
             </Col>
           </Row>
+
           <Row className="mt-4">
             <Col md={4}>
               <Card
@@ -168,10 +163,7 @@ export default function Dashboard() {
                   className="d-flex justify-content-center align-items-center"
                   style={{ height: "200px" }}
                 >
-                  <div
-                    className="d-flex flex-wrap justify-content-center"
-                    style={{ maxWidth: "240px" }}
-                  >
+                  <div className="d-flex flex-wrap justify-content-center" style={{ maxWidth: "240px" }}>
                     {generateStreakGrid()}
                   </div>
                 </Card.Body>

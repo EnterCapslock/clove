@@ -1,156 +1,66 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
-import Sidebar from "../components/Sidebar";
-import PreAssessment from "../components/PreAssessment";
-import PostAssessment from "../components/PostAssessment";
+// src/pages/MyDeckPage.jsx
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "../css modules/pages/MyDeck.module.css";
 
-const lessons = [
+const topicsData = [
   {
+    id: "topic1",
     name: "Conditional and Loops",
-    progress: 54,
-    topics: [
-      { name: "If-Else Statements" },
-      { name: "For Loops" },
-      { name: "While Loops" },
-    ],
+    description: "Learn about conditionals, loops, and control flow.",
+    locked: false,
   },
   {
+    id: "topic2",
     name: "Methods and Functions",
-    progress: 54,
-    topics: [
-      { name: "Defining Functions" },
-      { name: "Function Parameters" },
-      { name: "Return Statements" },
-    ],
+    description: "Learn about creating and calling methods/functions.",
+    locked: true,
+  },
+  {
+    id: "topic3",
+    name: "Data Types and Variables",
+    description: "Learn about primitive data types and variable usage.",
+    locked: true,
   },
 ];
 
-const MyDeck = () => {
-  const [selectedLesson, setSelectedLesson] = useState(null);
-  const [selectedTopic, setSelectedTopic] = useState(null);
-  const [showTopicsModal, setShowTopicsModal] = useState(false);
-  const [showPreAssessment, setShowPreAssessment] = useState(false);
-  const [showPostAssessment, setShowPostAssessment] = useState(false);
+export default function MyDeckPage() {
+  const navigate = useNavigate();
 
-  const handleLessonClick = (lesson) => {
-    setSelectedLesson(lesson);
-    setShowTopicsModal(true);
-  };
+  function handlePreAssessment() {
+    alert("Navigate to or open Pre-Assessment here!");
+  }
 
-  const handleTopicClick = (topic) => {
-    setSelectedTopic(topic);
-    setShowPreAssessment(true);
-  };
+  function handleTopicClick(topic) {
+    if (topic.locked) {
+      alert(`"${topic.name}" is locked!`);
+    } else {
+      navigate(`/topic/${topic.id}`);
+    }
+  }
 
   return (
-    <Container fluid className="d-flex vh-100 p-0">
-      {/* Sidebar on the left */}
-      <div
-        style={{
-          width: "250px",
-          backgroundColor: "#232529",
-          minHeight: "100vh",
-        }}
-      >
-        <Sidebar />
+    <div className={styles.myDeckContainer}>
+      <h2 className={styles.pageTitle}>What do you want to learn today?</h2>
+      <button className={styles.preAssessmentBtn} onClick={handlePreAssessment}>
+        Take Pre-Assessment &gt;
+      </button>
+      <p className={styles.assessmentInfo}>
+        State here the importance of taking the assessment...
+      </p>
+      <div className={styles.topicsGrid}>
+        {topicsData.map((topic) => (
+          <div
+            key={topic.id}
+            className={`${styles.topicCard} ${topic.locked ? styles.locked : ""}`}
+            onClick={() => handleTopicClick(topic)}
+          >
+            <h3 className={styles.topicName}>{topic.name}</h3>
+            <p className={styles.topicDesc}>{topic.description}</p>
+            {topic.locked && <div className={styles.lockIcon}>🔒</div>}
+          </div>
+        ))}
       </div>
-
-      {/* Main Content */}
-      <Container
-        fluid
-        className="d-flex flex-grow-1 justify-content-center align-items-center"
-        style={{ backgroundColor: "#232529", color: "white" }}
-      >
-        <div className="text-center" style={{ maxWidth: "600px" }}>
-          <h4 className="text-white mb-4">What do you want to learn today?</h4>
-          <Row className="g-3 justify-content-center">
-            {lessons.map((lesson, index) => (
-              <Col
-                key={index}
-                xs={12}
-                sm={6}
-                md={4}
-                lg={4}
-                className="d-flex justify-content-center"
-              >
-                <Card
-                  onClick={() => handleLessonClick(lesson)}
-                  className="p-3 text-white text-center d-flex flex-column justify-content-center align-items-center"
-                  style={{
-                    width: "500px",
-                    height: "180px",
-                    backgroundColor: "#3F3F46",
-                    cursor: "pointer",
-                    borderRadius: "12px",
-                    border: "1px solid #494950",
-                  }}
-                >
-                  <h6 className="fw-bold mb-2">{lesson.name}</h6>
-                  <div
-                    className="w-100 bg-dark rounded"
-                    style={{ height: "10px" }}
-                  >
-                    <div
-                      className="bg-primary rounded"
-                      style={{ width: `${lesson.progress}%`, height: "100%" }}
-                    ></div>
-                  </div>
-                  <span className="mt-2">{lesson.progress}% Completed</span>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </div>
-
-        {/* Topics Modal */}
-        <Modal
-          show={showTopicsModal}
-          onHide={() => setShowTopicsModal(false)}
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>{selectedLesson?.name}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {selectedLesson?.topics.map((topic, index) => (
-              <Button
-                key={index}
-                variant="outline-dark"
-                className="w-100 mb-2"
-                onClick={() => handleTopicClick(topic)}
-              >
-                {topic.name}
-              </Button>
-            ))}
-            {selectedLesson?.topics.length > 0 && (
-              <Button
-                variant="primary"
-                className="w-100 mt-3"
-                onClick={() => setShowPostAssessment(true)}
-              >
-                Take Post-Assessment
-              </Button>
-            )}
-          </Modal.Body>
-        </Modal>
-
-        {/* Pre-Assessment Modal */}
-        <PreAssessment
-          show={showPreAssessment}
-          handleClose={() => setShowPreAssessment(false)}
-          lesson={selectedLesson?.name}
-          onSubmit={() => setShowPreAssessment(false)} // Ensures onSubmit exists
-        />
-
-        {/* Post-Assessment Modal */}
-        <PostAssessment
-          show={showPostAssessment}
-          handleClose={() => setShowPostAssessment(false)}
-          lesson={selectedLesson?.name}
-        />
-      </Container>
-    </Container>
+    </div>
   );
-};
-
-export default MyDeck;
+}

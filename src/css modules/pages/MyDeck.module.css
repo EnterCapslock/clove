@@ -1,0 +1,148 @@
+/* MyDeckPage Styles */
+
+/* The main container for the page */
+.myDeckContainer {
+  position: relative;
+  min-height: 100vh;
+  background-color: #232529;
+  color: #E2E8F0;
+  padding: 20px;
+  font-family: "Open Sauce One", "Roboto", sans-serif;
+  transition: margin-left 0.3s ease;
+  margin-left: var(--sidebar-width, 250px); /* Sidebar shift for large screens */
+}
+
+/* Title for the page */
+.pageTitle {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+/* Button for pre-assessment */
+.preAssessmentBtn {
+  background-color: #a6aafb;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.preAssessmentBtn:hover {
+  background-color: #8c90e6;
+}
+
+/* Paragraph describing the importance of the assessment */
+.assessmentInfo {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #ccc;
+  max-width: 600px;
+}
+
+/* Grid for the topics */
+.topicsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+/* Individual topic card */
+.topicCard {
+  background-color: #2d2f34;
+  width: 200px;
+  height: 150px;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  flex-grow: 1;
+}
+
+/* Topic card hover effect */
+.topicCard:hover {
+  background-color: #383b40;
+}
+
+/* Topic name inside the card */
+.topicName {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+/* Topic description inside the card */
+.topicDesc {
+  font-size: 14px;
+  color: #bbb;
+}
+
+/* Locked state styling for the topic card */
+.locked {
+  opacity: 0.6;
+}
+
+/* Lock icon on the topic card */
+.lockIcon {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 20px;
+}
+
+/* Responsive Design Adjustments */
+
+/* Adjustments for mobile */
+@media (max-width: 768px) {
+  /* Ensure the content does not overflow or overlap */
+  .myDeckContainer {
+    margin-left: 0; /* No sidebar shift on mobile */
+    padding-left: 0; /* Avoid extra padding */
+  }
+
+  /* Adjustments for the topics grid */
+  .topicsGrid {
+    flex-direction: column; /* Stack the topic cards vertically */
+    gap: 15px;
+    align-items: center; /* Center the items */
+  }
+
+  .topicCard {
+    width: 100%; /* Take full width on mobile */
+    max-width: 400px; /* Limit width to prevent overflowing */
+    height: auto;
+  }
+
+  /* Adjust pre-assessment button and other content on mobile */
+  .preAssessmentBtn {
+    font-size: 14px;
+    width: 100%; /* Make button stretch full width */
+  }
+
+  /* Reduce page title font size on mobile */
+  .pageTitle {
+    font-size: 24px;
+  }
+}
+
+/* Adjustments for very small screens */
+@media (max-width: 480px) {
+  /* Make pre-assessment button slightly smaller */
+  .preAssessmentBtn {
+    font-size: 12px;
+  }
+
+  .topicsGrid {
+    gap: 10px;
+  }
+}
+

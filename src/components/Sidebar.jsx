@@ -1,3 +1,5 @@
+// src/components/Sidebar.jsx
+
 import React, { useState, useEffect } from "react";
 import { Nav } from "react-bootstrap";
 import {
@@ -74,9 +76,9 @@ export default function Sidebar() {
         <OverlayTrigger placement="right" overlay={renderTooltip("Dashboard")}>
           <Nav.Link
             as={Link}
-            to="/DashboardPage"
+            to="/dashboard"
             className={`text-white d-flex align-items-center ${styles.navItem} ${
-              activeItem === "/DashboardPage" ? styles.active : ""
+              activeItem === "/dashboard" ? styles.active : ""
             }`}
           >
             <FaTh className="me-2" />
@@ -100,9 +102,9 @@ export default function Sidebar() {
         <OverlayTrigger placement="right" overlay={renderTooltip("My Deck")}>
           <Nav.Link
             as={Link}
-            to="/MyDeckPage"
+            to="/my-deck"
             className={`text-white d-flex align-items-center ${styles.navItem} ${
-              activeItem === "/MyDeckPage" ? styles.active : ""
+              activeItem === "/my-deck" ? styles.active : ""
             }`}
           >
             <FaLayerGroup className="me-2" />
