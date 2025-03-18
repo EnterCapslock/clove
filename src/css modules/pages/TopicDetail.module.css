@@ -1,0 +1,127 @@
+/* src/css modules/pages/TopicDetail.module.css */
+
+.topicDetailContainer {
+    padding: 20px;
+    background-color: #232529;
+    color: #E2E8F0;
+    min-height: 100vh;
+    font-family: 'Open Sauce One', 'Roboto', sans-serif;
+    /* Optional space-themed background */
+    background-image: url('/src/images/space-bg.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .topicTitle {
+    font-size: 32px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .topicDescription {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .subtopicsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .subtopicCard {
+    background-color: rgba(29, 31, 34, 0.9);
+    border-radius: 8px;
+    padding: 16px;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  
+  .subtopicCard:hover {
+    transform: translateY(-5px);
+  }
+  
+  .subtopicImage {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .subtopicName {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #A6AAFB;
+  }
+  
+  .subtopicMission {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .playButton {
+    background-color: #A6AAFB;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .playButton:hover {
+    background-color: #7b4dcf;
+  }
+  
+  .assessmentArea {
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .postAssessmentButton {
+    background-color: #a6aafb;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+  }
+  
+  .postAssessmentButton:hover {
+    background-color: #8c90e6;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .subtopicCard {
+      width: 90%;
+      max-width: 350px;
+    }
+    .topicTitle {
+      font-size: 28px;
+    }
+    .topicDescription {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .topicTitle {
+      font-size: 24px;
+    }
+    .topicDescription {
+      font-size: 14px;
+    }
+    .playButton,
+    .postAssessmentButton {
+      font-size: 16px;
+      padding: 8px 16px;
+    }
+  }
+  
