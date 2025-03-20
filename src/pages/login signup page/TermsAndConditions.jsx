@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "../../css modules/pages/TermsAndConditions.module.css"; 
+import styles from "../../css modules/pages/TermsAndConditions.module.scss";
 
 export default function TermsAndConditions({ onClose }) {
   return (
     <div className={styles.overlay}>
       <div className={styles.termsContainer}>
         <h2>Terms and Conditions</h2>
-        
+
         <p>
           Welcome to <strong>CLOVE</strong>, an adaptive educational game
           platform for learning coding and programming skills. By accessing or
@@ -78,8 +78,8 @@ export default function TermsAndConditions({ onClose }) {
         <h3>9. Termination</h3>
         <p>
           We reserve the right to suspend or terminate any account that violates
-          these Terms, infringes upon the rights of others, or otherwise
-          engages in illegal or disruptive behavior.
+          these Terms, infringes upon the rights of others, or otherwise engages
+          in illegal or disruptive behavior.
         </p>
 
         <h3>10. Modifications to Terms</h3>
@@ -90,7 +90,9 @@ export default function TermsAndConditions({ onClose }) {
           changes indicates acceptance of the revised Terms.
         </p>
 
-        <button onClick={onClose} className={styles.closeButton}>Close</button>
+        <button onClick={onClose} className={styles.closeButton}>
+          Close
+        </button>
       </div>
     </div>
   );

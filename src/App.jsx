@@ -6,9 +6,6 @@ import MyDeckPage from "./pages/MyDeckPage";
 import TopicDetail from "./pages/TopicDetail";
 import "./App.css";
 
-// The Layout that wraps routes that need a sidebar
-import Layout from "./components/Layout";
-
 function App() {
   return (
     <div className="App">
@@ -19,30 +16,9 @@ function App() {
           <Route path="/login-signup" element={<LoginSignupPage />} />
 
           {/* Pages WITH sidebar: wrap them in Layout */}
-          <Route
-            path="/dashboard"
-            element={
-              <Layout>
-                <DashboardPage />
-              </Layout>
-            }
-          />
-          <Route
-            path="/my-deck"
-            element={
-              <Layout>
-                <MyDeckPage />
-              </Layout>
-            }
-          />
-          <Route
-            path="/topic/:topicId"
-            element={
-              <Layout>
-                <TopicDetail />
-              </Layout>
-            }
-          />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/my-deck" element={<MyDeckPage />} />
+          <Route path="/topic/:topicId" element={<TopicDetail />} />
         </Routes>
       </Router>
     </div>

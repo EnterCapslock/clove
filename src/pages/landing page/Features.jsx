@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import styles from "../../css modules/pages/Features.module.css"; // Adjust path as needed
+import styles from "../../css modules/pages/Features.module.scss"; // Adjust path as needed
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 // Replace with your actual images

@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import styles from "../../css modules/pages/Team.module.css";
+import styles from "../../css modules/pages/Team.module.scss";
 
 // Replace these with actual images
 import teamPic1 from "../../assets/images/flower.jpg";
