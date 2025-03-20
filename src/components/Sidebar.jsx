@@ -7,7 +7,7 @@ import { PiSidebarBold } from "react-icons/pi";
 import { Link, useLocation } from "react-router-dom";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import styles from "../css modules/components/Sidebar.module.css";
+import styles from "../css modules/components/Sidebar.module.scss";
 
 import CloveLogo from "../assets/images/CloveLogo.png";
 
@@ -44,7 +44,8 @@ export default function Sidebar() {
     <div
       className={`${styles.sidebar} ${
         expanded ? styles.expanded : ""
-      } bg-dark text-white d-flex flex-column`}
+      } text-white d-flex flex-column`}
+      style={{ backgroundColor: "#232529" }}
     >
       {/* Top: Logo & Title */}
       <div className="d-flex align-items-center justify-content-center mb-3">

@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { Container, Row, Col, Card, ProgressBar } from "react-bootstrap";
 import { FaFire } from "react-icons/fa";
-import styles from "../css modules/pages/Dashboard.module.css";
+
+import Layout from "../components/Layout";
+
+import styles from "../css modules/pages/Dashboard.module.scss";
 
 const skillData = [
   { name: "Loops", value: 40, color: "#8884d8" },
@@ -17,6 +20,7 @@ export default function DashboardPage() {
 
   return (
     <div className={styles.dashboardWrapper}>
+      <Layout />
       <div className={styles.dashboardContent}>
         <Container fluid className="p-4 bg-dark text-white">
           <h2 className="mb-4">Overview</h2>

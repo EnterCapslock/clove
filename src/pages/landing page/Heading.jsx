@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "../../css modules/pages/Heading.module.css";
+import styles from "../../css modules/pages/Heading.module.scss";
 import tempPic from "../../assets/images/flower.jpg";
 import CloveLogo from "../../assets/images/CloveLogo.png";
 

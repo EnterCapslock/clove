@@ -1,13 +1,20 @@
-// src/pages/MyDeckPage.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "../css modules/pages/MyDeck.module.css";
+import { Container } from "react-bootstrap";
+import styles from "../css modules/pages/MyDeck.module.scss";
+import Layout from "../components/Layout";
+
+// Import images
+import ConditionalsLoopsImg from "../assets/images/Contact.svg";
+// import DataTypesImg from "../assets/images/data_types.svg";
+// import MethodsFunctionsImg from "../assets/images/methods_functions.svg";
 
 const topicsData = [
   {
     id: "topic1",
     name: "Conditional and Loops",
     description: "Learn about conditionals, loops, and control flow.",
+    image: ConditionalsLoopsImg,
     locked: false,
   },
   {
@@ -26,6 +33,7 @@ const topicsData = [
 
 export default function MyDeckPage() {
   const navigate = useNavigate();
+  const [preAssessmentTaken, setPreAssessmentTaken] = React.useState(true);
 
   function handlePreAssessment() {
     alert("Navigate to or open Pre-Assessment here!");
@@ -40,28 +48,45 @@ export default function MyDeckPage() {
   }
 
   return (
-    <div className={styles.myDeckContainer}>
-      <h2 className={styles.pageTitle}>What do you want to learn today?</h2>
-      <button className={styles.preAssessmentBtn} onClick={handlePreAssessment}>
-        Take Pre-Assessment &gt;
-      </button>
-      <p className={styles.assessmentInfo}>
-        State here the importance of taking the assessment...
-      </p>
-      <div className={styles.topicsGrid}>
-        {topicsData.map((topic) => (
-          <div
-            key={topic.id}
-            className={`${styles.topicCard} ${
-              topic.locked ? styles.locked : ""
-            }`}
-            onClick={() => handleTopicClick(topic)}
-          >
-            <h3 className={styles.topicName}>{topic.name}</h3>
-            <p className={styles.topicDesc}>{topic.description}</p>
-            {topic.locked && <div className={styles.lockIcon}>🔒</div>}
-          </div>
-        ))}
+    <div className={styles.myDeckWrapper}>
+      <Layout />
+      <div className={styles.myDeckContent}>
+        <h2 className={styles.pageTitle}>What do you want to learn today?</h2>
+        {preAssessmentTaken ? (
+          <br />
+        ) : (
+          <Container className="p-0 m-0">
+            <button
+              className={styles.preAssessmentBtn}
+              onClick={handlePreAssessment}
+            >
+              Take Pre-Assessment &gt;
+            </button>
+            <p className={styles.assessmentInfo}>
+              The pre-assessment helps us evaluate prior knowledge, identify
+              learning gaps, and personalize course content.
+            </p>
+          </Container>
+        )}
+        <div className={styles.topicsGrid}>
+          {topicsData.map((topic) => (
+            <div
+              key={topic.id}
+              className={`${styles.topicCard} ${
+                topic.locked ? styles.locked : ""
+              }`}
+              onClick={() => handleTopicClick(topic)}
+              style={{
+                backgroundImage: topic.image ? `url(${topic.image})` : "none",
+              }}
+            >
+              <div className={styles.topicContent}>
+                <h3 className={styles.topicName}>{topic.name}</h3>
+                <p className={styles.topicDesc}>{topic.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

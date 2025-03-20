@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
-import styles from "../../css modules/pages/Forms.module.css";
+import styles from "../../css modules/pages/Forms.module.scss";
 import CloveLogo from "../../assets/images/CloveLogo.png";
 
 import TermsAndConditions from "./TermsAndConditions";

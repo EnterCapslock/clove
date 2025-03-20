@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../css modules/pages/Footer.module.css";
+import styles from "../../css modules/pages/Footer.module.scss";
 import CloveLogo from "../../assets/images/CloveLogo.png";
 
 export default function Footer() {
