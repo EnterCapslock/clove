@@ -1,0 +1,143 @@
+/* src/css modules/pages/MyDeck.module.css */
+
+/* Main container for the MyDeck page */
+.myDeckContainer {
+  position: relative;
+  min-height: 100vh;
+  background-color: #232529;
+  color: #e2e8f0;
+  padding: 20px;
+  font-family: "Open Sauce One", "Roboto", sans-serif;
+  transition: margin-left 0.3s ease;
+  margin-left: var(--sidebar-width, 250px); /* Adjust based on sidebar width */
+}
+
+/* Page title */
+.pageTitle {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+/* Info paragraph */
+.assessmentInfo {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #ccc;
+  max-width: 600px;
+}
+
+/* Grid layout for topics */
+.topicsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+/* Individual topic card */
+.topicCard {
+  background-color: #2d2f34;
+  width: 200px;
+  height: 200px; /* Increased height to include mastery display */
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.topicCard:hover {
+  background-color: #383b40;
+}
+
+/* Topic name styling */
+.topicName {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+/* Topic description styling */
+.topicDesc {
+  font-size: 14px;
+  color: #bbb;
+}
+
+/* Locked state styling */
+.locked {
+  opacity: 0.6;
+}
+
+/* Lock icon styling */
+.lockIcon {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 20px;
+}
+
+/* Mastery container styling */
+.masteryContainer {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.masteryLabel {
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #a6aafb;
+}
+
+.masteryBar {
+  width: 100%;
+  height: 10px;
+  background-color: #444;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.masteryFill {
+  height: 100%;
+  background-color: #a6aafb;
+  transition: width 0.3s;
+}
+
+.masteryPercent {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #ccc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .myDeckContainer {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .topicsGrid {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+  .topicCard {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+  .pageTitle {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topicsGrid {
+    gap: 10px;
+  }
+}

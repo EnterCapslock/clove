@@ -1,0 +1,72 @@
+/* src/css modules/pages/TopicSelection.module.css */
+.container {
+  padding: 20px;
+  background-color: #232529;
+  color: #e2e8f0;
+  min-height: 100vh;
+  font-family: "Open Sauce One", "Roboto", sans-serif;
+  text-align: center;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.topicList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.topicButton {
+  background-color: #2d2f34;
+  color: #e2e8f0;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+  width: 100%;
+  max-width: 400px;
+}
+
+.topicButton:hover {
+  background-color: #383b40;
+}
+
+.selected {
+  background-color: #a6aafb;
+  color: #fff;
+}
+
+.submitButton {
+  background-color: #a6aafb;
+  color: #fff;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #8c90e6;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .title {
+    font-size: 28px;
+  }
+  .topicButton {
+    font-size: 16px;
+  }
+  .submitButton {
+    font-size: 18px;
+  }
+}

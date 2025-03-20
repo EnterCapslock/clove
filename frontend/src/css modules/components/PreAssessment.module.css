@@ -1,0 +1,68 @@
+/* src/css modules/pages/PreAssessment.module.css */
+.container {
+  padding: 20px;
+  background-color: #232529;
+  color: #e2e8f0;
+  min-height: 100vh;
+  font-family: "Open Sauce One", "Roboto", sans-serif;
+  margin-left: var(--sidebar-width, 250px);
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.subtopicSection {
+  margin-bottom: 30px;
+  padding: 10px;
+  border-bottom: 1px solid #444;
+}
+
+.questionBlock {
+  margin-bottom: 15px;
+}
+
+.questionText {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.answerInput {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 2px solid #a6aafb;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #e2e8f0;
+}
+
+.submitButton {
+  background-color: #a6aafb;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  display: block;
+  margin: 0 auto;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #8c90e6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    margin-left: 0;
+    padding: 15px;
+  }
+  .title {
+    font-size: 24px;
+  }
+}
