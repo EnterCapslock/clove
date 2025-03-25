@@ -1,27 +1,55 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Container } from "react-bootstrap";
 import LandingPage from "./pages/landing page/LandingPage";
 import LoginSignupPage from "./pages/login signup page/Forms";
 import DashboardPage from "./pages/DashboardPage";
-import MyDeckPage from "./pages/MyDeckPage";
-import TopicDetail from "./pages/TopicDetail";
-import "./App.css";
+import MyDeckPage from "./pages/MyDeck/MyDeckPage";
+import TopicDetailsPage from "./pages/MyDeck/TopicDetailsPage";
+import Layout from "./components/Layout"; // Sidebar Wrapper
+import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap styles
+
+// Wrapper for pages that require a sidebar
+function ProtectedRoutes({ children }) {
+  return <Layout>{children}</Layout>;
+}
 
 function App() {
   return (
-    <div className="App">
-      <Router>
+    <Router>
+      <Container fluid className="app-container p-0 m-0">
         <Routes>
-          {/* Pages WITHOUT sidebar */}
+          {/* Public Pages (No Sidebar) */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/login-signup" element={<LoginSignupPage />} />
 
-          {/* Pages WITH sidebar: wrap them in Layout */}
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/my-deck" element={<MyDeckPage />} />
-          <Route path="/topic/:topicId" element={<TopicDetail />} />
+          {/* Protected Pages (With Sidebar) */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoutes>
+                <DashboardPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/my-deck"
+            element={
+              <ProtectedRoutes>
+                <MyDeckPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/topic/:topicId"
+            element={
+              <ProtectedRoutes>
+                <TopicDetailsPage />
+              </ProtectedRoutes>
+            }
+          />
         </Routes>
-      </Router>
-    </div>
+      </Container>
+    </Router>
   );
 }
 
