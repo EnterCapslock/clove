@@ -1,48 +1,11 @@
-/* MyDeckPage Styles */
-
-/* The main container for the page */
-// .myDeckContainer {
-//   position: relative;
-//   min-height: 100vh;
-//   //background-color: #232529;
-//   background-color: #0852e7;
-//   color: #e2e8f0;
-//   padding: 20px;
-//   transition: margin-left 1.3s ease;
-// }
-
 $font-family: "Open Sauce One", "Roboto", sans-serif;
 
 .myDeckWrapper {
-  position: relative;
   min-height: 100vh;
-  background-color: #232529;
-  font-family: $font-family;
-  color: #e2e8f0;
-  display: flex;
+  background-color: #212529;
+  overflow: hidden;
 }
 
-.myDeckContent {
-  margin-left: var(--sidebar-width, 250px);
-  padding: 30px;
-  transition: margin-left 0.3s;
-  flex: 1;
-  overflow-y: auto;
-}
-
-@media (max-width: 768px) {
-  .dashboardContent {
-    margin-left: var(--sidebar-width, 200px);
-  }
-}
-
-@media (max-width: 480px) {
-  .dashboardContent {
-    margin-left: var(--sidebar-width, 160px);
-  }
-}
-
-/* Title for the page */
 .pageTitle {
   font-size: 28px;
   font-weight: bold;
@@ -50,73 +13,59 @@ $font-family: "Open Sauce One", "Roboto", sans-serif;
   font-family: $font-family;
 }
 
-/* Button for pre-assessment */
-.preAssessmentBtn {
-  background-color: #a6aafb;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 20px;
-  transition: background-color 0.3s;
+/* Scrollable Container */
+.scrollableContainer {
+  min-height: 0;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: transparent transparent; /* Hides scrollbar when idle */
+  gap: 30px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+  }
 }
 
-.preAssessmentBtn:hover {
-  background-color: #8c90e6;
-}
-
-/* Paragraph describing the importance of the assessment */
-.assessmentInfo {
-  margin-bottom: 20px;
-  font-size: 16px;
-  color: #ccc;
-  max-width: 600px;
-}
-
-/* Grid for the topics */
-.topicsGrid {
-  display: flex;
-  // flex-wrap: wrap;
-  gap: 20px;
-  // justify-content: space-between;
-}
-
-/* Individual topic card */
+/* Topic Card */
 .topicCard {
-  max-width: 250px;
-  height: 260px;
+  max-width: 240px;
+  height: 250px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 10px;
   cursor: pointer;
   position: relative;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   overflow: hidden;
-
   display: flex;
   align-items: center;
-  justify-content: center;
   text-align: center;
-
   flex-grow: 1;
-  color: white; // Ensures text is readable
+  color: white;
+  will-change: transform;
 
   &:hover {
-    transform: scale(1.05); // Slight zoom effect on hover
+    transform: scale(1.05);
 
     .topicContent {
-      opacity: 1; // Show on hover
+      opacity: 1;
     }
   }
 }
 
 .topicContent {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -125,15 +74,11 @@ $font-family: "Open Sauce One", "Roboto", sans-serif;
   justify-content: center;
   text-align: center;
   backdrop-filter: blur(8px);
-  background: rgba(0, 0, 0, 0.5); // Semi-transparent background
   border-radius: 10px;
-  padding: 10px;
-
-  opacity: 0; // Hidden by default
+  opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
 
-/* Topic name inside the card */
 .topicName {
   font-size: 18px;
   font-weight: bold;
@@ -146,64 +91,33 @@ $font-family: "Open Sauce One", "Roboto", sans-serif;
   text-align: center;
 }
 
-// Locked state styling
+/* Locked state styling */
 .locked {
   filter: grayscale(100%);
   opacity: 0.6;
   pointer-events: none;
 }
 
-.lockIcon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  color: white;
-}
+/* Pre-Assessment Button */
+.preAssessmentBtn {
+  background-color: #a6aafb;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
 
-/* Responsive Design Adjustments */
-
-/* Adjustments for mobile */
-@media (max-width: 768px) {
-  /* Ensure the content does not overflow or overlap */
-  .myDeckContainer {
-    margin-left: 0; /* No sidebar shift on mobile */
-    padding-left: 0; /* Avoid extra padding */
-  }
-
-  /* Adjustments for the topics grid */
-  .topicsGrid {
-    flex-direction: column; /* Stack the topic cards vertically */
-    gap: 15px;
-    align-items: center; /* Center the items */
-  }
-
-  .topicCard {
-    width: 100%; /* Take full width on mobile */
-    max-width: 400px; /* Limit width to prevent overflowing */
-    height: auto;
-  }
-
-  /* Adjust pre-assessment button and other content on mobile */
-  .preAssessmentBtn {
-    font-size: 14px;
-    width: 100%; /* Make button stretch full width */
-  }
-
-  /* Reduce page title font size on mobile */
-  .pageTitle {
-    font-size: 24px;
+  &:hover {
+    background-color: #8c90e6;
   }
 }
 
-/* Adjustments for very small screens */
-@media (max-width: 480px) {
-  /* Make pre-assessment button slightly smaller */
-  .preAssessmentBtn {
-    font-size: 12px;
-  }
-
-  .topicsGrid {
-    gap: 10px;
-  }
+.assessmentInfo {
+  font-size: 16px;
+  color: #ccc;
+  max-width: 600px;
+  margin-bottom: 20px;
 }

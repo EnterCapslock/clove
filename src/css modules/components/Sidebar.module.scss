@@ -1,143 +1,89 @@
-$font-family: "Open Sauce One", "Roboto", sans-serif;
+$sidebar-collapsed-width: 60px;
+$sidebar-expanded-width: 250px;
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
   height: 100vh;
-  width: 80px;
+  width: $sidebar-collapsed-width;
   transition: width 0.3s;
-  overflow: hidden;
-  z-index: 999;
-  padding-top: 20px;
-  font-family: $font-family;
+  background-color: #212529;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
   border-right: 1px solid #ccc;
+  overflow: hidden;
 }
 
-/* Expanded state */
 .expanded {
-  width: 250px;
+  width: $sidebar-expanded-width;
 }
 
-/* Logo Section (expanded) */
+/* Logo */
 .logoSection {
+  max-height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.logo {
+  font-size: 40px;
+  color: #ffff;
+}
+
 .logoImg {
-  width: 36px;
+  width: 40px;
   height: auto;
-  margin-left: 8px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-.logoText {
-  font-size: 28px;
-  font-weight: 600;
-  color: #fff;
-}
-
-/* Collapsed: only the logo image */
-.logoImgCollapsed {
-  width: 36px;
-  height: auto;
-}
-
-/* Nav Items */
+/* Navigation Items */
 .navItem {
-  padding: 8px;
-  margin: 0 10px 8px 10px;
-  color: #adb5bd;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
-  justify-content: center; /* center icon + text when collapsed */
-  border-radius: 6px;
-  transition: background-color 0.3s, color 0.3s;
-  font-size: 15px; /* Slightly smaller text */
-}
-
-.navItem:hover,
-.navItem.active {
-  background-color: #343a40;
-  color: #fff;
-}
-
-.active {
-  background-color: #495057;
-  color: #fff;
-}
-
-/* Icon inside navItem */
-.navItem svg {
-  width: 18px;
-  height: 18px;
-  transition: color 0.3s;
-}
-
-/* Align left when expanded */
-.sidebar.expanded .navItem {
-  justify-content: flex-start;
-  text-align: left;
-  padding-left: 16px; /* slightly less padding for neatness */
-}
-
-.sidebar.expanded .navItem svg {
-  margin-right: 8px;
-}
-
-/* Toggle Icon (MdMenu) */
-.toggleIcon {
-  cursor: pointer;
   color: #adb5bd;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+
+  svg {
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover,
+  &.active {
+    background-color: #343a40;
+    color: #fff;
+  }
+}
+
+/* When sidebar is collapsed */
+.sidebar:not(.expanded) .navItem {
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+
+  svg {
+    margin: 0;
+  }
+}
+
+/* Logout */
+.logout {
+  margin-top: auto;
+}
+
+/* Toggle Button */
+.toggleIcon {
+  padding: 10px;
+  text-align: end;
   font-size: 24px;
+  color: #adb5bd;
   transition: color 0.3s;
-}
 
-.toggleIcon:hover {
-  color: #fff;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .expanded {
-    width: 200px;
-  }
-  .logoImg,
-  .logoImgCollapsed {
-    width: 32px;
-  }
-  .logoText {
-    font-size: 26px;
-  }
-  .navItem {
-    font-size: 14px;
-  }
-  .navItem svg {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .sidebar {
-    width: 60px;
-  }
-  .expanded {
-    width: 160px;
-  }
-  .logoImg,
-  .logoImgCollapsed {
-    width: 28px;
-  }
-  .logoText {
-    font-size: 24px;
-  }
-  .navItem {
-    font-size: 13px;
-  }
-  .navItem svg {
-    width: 14px;
-    height: 14px;
+  &:hover {
+    color: #fff;
   }
 }
