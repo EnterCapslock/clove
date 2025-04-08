@@ -17,7 +17,6 @@ body {
 }
 
 .background-container {
-  background: url("../../assets/images/") no-repeat center center;
   background-size: cover;
   min-height: 100vh;
   width: 100%;
@@ -125,7 +124,7 @@ body {
 /* Scrollable Container */
 .scrollableContainer {
   background-image: url("../../assets/images/TopicDetailPage/loops\ background.svg"); // Path to your image
-  max-height: calc(100vh - 220px);
+  max-height: calc(100vh - 85px);
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin; /* Firefox */

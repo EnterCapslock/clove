@@ -1,19 +1,57 @@
-import React, { useState, useCallback } from "react";
+//react
+import React, { useState, useCallback, useContext } from "react";
+//useContext
+import { MyDeckContext } from "../../context/MyDeckContext";
+//react router
 import { useNavigate } from "react-router-dom";
+//react bootstrap
 import { Container, Row, Col } from "react-bootstrap";
+//scss
 import styles from "../../css modules/pages/MyDeck.module.scss";
-
+//components
 import TitleAndProfile from "../../components/TitleAndProfile";
+import PreAssessment from "../../components/PreAssessment"; // ADDED MISSING IMPORT
+
 // Import images
 import ConditionalsLoopsImg from "../../assets/images/MyDeckPage/loops.svg";
 
-const topicsData = Array.from({ length: 5 }, (_, index) => ({
-  id: `topic${index + 1}`,
-  name: `Topic ${index + 1}`,
-  description: "Learn about Java concepts.",
-  image: ConditionalsLoopsImg,
-  locked: index !== 0, // First topic unlocked, others locked
-}));
+const topicsData = [
+  {
+    id: "topic1",
+    name: "Data types and Variables",
+    description: "Learn about Java concepts.",
+    image: ConditionalsLoopsImg,
+    locked: false,
+  },
+  {
+    id: "topic2",
+    name: "Operators",
+    description: "Learn about Java concepts.",
+    image: ConditionalsLoopsImg,
+    locked: false,
+  },
+  {
+    id: "topic3",
+    name: "Conditional",
+    description: "Learn about Java concepts.",
+    image: ConditionalsLoopsImg,
+    locked: true,
+  },
+  {
+    id: "topic4",
+    name: "Loops",
+    description: "Learn about Java concepts.",
+    image: ConditionalsLoopsImg,
+    locked: true,
+  },
+  {
+    id: "topic5",
+    name: "Method and Functions",
+    description: "Learn about Java concepts.",
+    image: ConditionalsLoopsImg,
+    locked: true,
+  },
+];
 
 const TopicCard = React.memo(({ topic, onClick }) => (
   <Col
@@ -37,19 +75,30 @@ const TopicCard = React.memo(({ topic, onClick }) => (
 
 export default function MyDeckPage() {
   const navigate = useNavigate();
-  const [preAssessmentTaken, setPreAssessmentTaken] = useState(true);
+  const { preAssessmentTaken, setPreAssessmentTaken } =
+    useContext(MyDeckContext);
+  const [showPreAssessment, setShowPreAssessment] = useState(false);
+  const [selectedTopic, setSelectedTopic] = useState(null); // ADDED MISSING STATE
 
-  const handlePreAssessment = () => alert("Navigate to Pre-Assessment!");
+
+  // const handlePreAssessment = () => setShowPreAssessment(true);
 
   const handleTopicClick = useCallback(
     (topic) => {
       if (topic.locked) {
         alert(`${topic.name} is locked!`);
+        return;
+      }
+
+      setSelectedTopic(topic); // Store clicked topic
+
+      if (!preAssessmentTaken) {
+        setShowPreAssessment(true);
       } else {
-        navigate(`/topic/${topic.id}`);
+        navigate(`/my-deck/${topic.id}`);
       }
     },
-    [navigate]
+    [navigate, preAssessmentTaken]
   );
 
   return (
@@ -57,12 +106,34 @@ export default function MyDeckPage() {
       fluid
       className={`${styles.myDeckWrapper} p-2 ps-4 pe-4 text-white d-flex flex-column`}
     >
+      <PreAssessment
+        show={showPreAssessment}
+        handleClose={() => setShowPreAssessment(false)}
+        onSubmit={() => {
+          setPreAssessmentTaken(true);
+          if (selectedTopic) {
+            navigate(`/my-deck/${selectedTopic.id}`);
+          }
+        }}
+        lesson={selectedTopic?.name || "the topic"} // HANDLE UNDEFINED CASE
+      />
       <TitleAndProfile title="Hello John Doe!" />
-      {preAssessmentTaken ? (
+      {!preAssessmentTaken ? (
+        <Container className="p-0 m-0">
+          <button
+            className={styles.preAssessmentBtn}
+            onClick={() => setShowPreAssessment(true)}
+          >
+            Take Pre-Assessment &gt;
+          </button>
+          <p className={styles.assessmentInfo}>
+            The pre-assessment helps us evaluate prior knowledge, identify
+            learning gaps, and personalize course content.
+          </p>
+        </Container>
+      ) : (
         <div
-          className={`${styles.scrollableContainer} 
-          mt-3 p-0 d-flex flex-grow-1 flex-wrap justify-content-center `}
-          style={{ backgroundColor: "orange" }}
+          className={`${styles.scrollableContainer} mt-3 p-0 d-flex flex-grow-1 flex-wrap justify-content-center`}
         >
           {topicsData.map((topic) => (
             <TopicCard
@@ -72,19 +143,6 @@ export default function MyDeckPage() {
             />
           ))}
         </div>
-      ) : (
-        <Container className="p-0 m-0">
-          <button
-            className={styles.preAssessmentBtn}
-            onClick={handlePreAssessment}
-          >
-            Take Pre-Assessment &gt;
-          </button>
-          <p className={styles.assessmentInfo}>
-            The pre-assessment helps us evaluate prior knowledge, identify
-            learning gaps, and personalize course content.
-          </p>
-        </Container>
       )}
     </Container>
   );
