@@ -29,7 +29,7 @@ export default function TitleAndProfile({ title, description, topic }) {
       <Col className="d-flex justify-content-center align-items-end text-white">
         <h2
           // style={{ backgroundColor: "orange" }}
-          className="m-0 p-0"
+          className="m-0 pb-2 p-0"
         >
           {topic}
         </h2>

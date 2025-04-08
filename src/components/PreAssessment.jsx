@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { MyDeckContext } from "../context/MyDeckContext";
 import { Modal, Button, Form } from "react-bootstrap";
 
-const PreAssessment = ({ show, handleClose, lesson, onSubmit }) => {
-  const [answers, setAnswers] = useState({}); // Store selected answers
+const PreAssessment = ({ show, handleClose, lesson }) => {
+  const { setPreAssessmentTaken } = useContext(MyDeckContext);
 
+  const [answers, setAnswers] = useState({}); // Store selected answers
   // Example questions (you can update these dynamically)
   const questions = [
     {
@@ -28,13 +30,8 @@ const PreAssessment = ({ show, handleClose, lesson, onSubmit }) => {
 
   // Submit PreAssessment
   const handleSubmit = () => {
-    if (!isFormComplete) {
-      alert("Please answer all questions before submitting.");
-      return;
-    }
-
-    console.log("PreAssessment Answers:", answers);
-    onSubmit(); // Unlock topics after completion
+    setPreAssessmentTaken(true);
+    handleClose();
   };
 
   return (

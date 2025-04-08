@@ -1,0 +1,27 @@
+.timerRingContainer {
+    position: relative;
+    width: 70px; /* Reduced size */
+    height: 70px; /* Reduced size */
+    margin-top: 1rem;
+  }
+  
+  .timerRing {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #232529;
+  }
+  
+  .timerCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #E2E8F0;
+  }
+  
+  .timerText {
+    font-size: 1rem; /* Smaller text size */
+    color: #A6AAFB;
+  }
+  

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { MyDeckContext } from "../context/MyDeckContext";
 import { Modal, Button, Form } from "react-bootstrap";
 import {
   LineChart,
@@ -15,6 +16,13 @@ const PostAssessment = ({ show, handleClose, lesson }) => {
   const [expGained, setExpGained] = useState(0);
   const [masteryAdded, setMasteryAdded] = useState(0);
   const [timeTaken, setTimeTaken] = useState("3m 25s");
+
+  const {
+    setPostAssessmentTaken,
+    masteryLevels,
+    setMasteryLevels,
+    completedSubtopics,
+  } = useContext(MyDeckContext);
 
   // Simulated previous mastery data
   const [masteryData, setMasteryData] = useState([
@@ -40,14 +48,12 @@ const PostAssessment = ({ show, handleClose, lesson }) => {
   };
 
   const handleSubmit = () => {
-    const newMastery = 40 + 20; // Simulating mastery improvement
-    setSubmitted(true);
-    setExpGained(150);
-    setMasteryAdded(20);
-    setMasteryData([
-      { attempt: "Before", mastery: 40 },
-      { attempt: "Now", mastery: newMastery },
-    ]);
+    const newMastery = 40 + 20;
+    setPostAssessmentTaken(true);
+    setMasteryLevels((prev) => ({
+      ...prev,
+      [lesson]: newMastery,
+    }));
   };
 
   return (
