@@ -5,11 +5,12 @@ import LoginSignupPage from "./pages/login signup page/Forms";
 import DashboardPage from "./pages/DashboardPage";
 import MyDeckPage from "./pages/MyDeck/MyDeckPage";
 import SubtopicSelectionPage from "./pages/MyDeck/SubtopicSelectionPage";
-import LessonAndChallengesPage from "./pages/Lesson and Challenges Page/LessonAndChallengesPage";
+import LessonPage from "./pages/Lesson and Challenges Page/LessonPage";
+import ChallengesPage from "./pages/Lesson and Challenges Page/ChallengesPage";
+import ResultsPage from "./pages/Lesson and Challenges Page/ResultsPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Layout from "./components/Layout"; // Sidebar Wrapper
-
 import { MyDeckProvider } from "./context/MyDeckContext"; // useContext
 
 // Wrapper for pages that require a sidebar
@@ -53,10 +54,29 @@ function App() {
               }
             />
             <Route
-              path="/my-deck/:topicId/:subtopicId"
-              element={<LessonAndChallengesPage />}
+              path="/lesson/:topicId/:subtopicId"
+              element={
+                <ProtectedRoutes>
+                  <LessonPage />
+                </ProtectedRoutes>
+              }
             />
-            <Route path="/chall" element={<LessonAndChallengesPage />} />
+            <Route
+              path="/my-deck/:topicId/:subtopicId/challenges"
+              element={
+                <ProtectedRoutes>
+                  <ChallengesPage />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/my-deck/:topicId/:subtopicId/results"
+              element={
+                <ProtectedRoutes>
+                  <ResultsPage />
+                </ProtectedRoutes>
+              }
+            />
           </Routes>
         </Container>
       </Router>

@@ -20,32 +20,26 @@ const MyDeckProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : {};
   });
 
-  //LocalStorage persistence
+  // State to store the results of the challenges
+  const [results, setResults] = useState([]);
+
+  // LocalStorage persistence for various states
   useEffect(() => {
-    localStorage.setItem(
-      "preAssessmentTaken",
-      JSON.stringify(preAssessmentTaken)
-    );
+    localStorage.setItem("preAssessmentTaken", JSON.stringify(preAssessmentTaken));
   }, [preAssessmentTaken]);
 
   useEffect(() => {
-    localStorage.setItem(
-      "completedChallenges",
-      JSON.stringify(completedChallenges)
-    );
-  }, [completedChallenges]);
-
-  // New localStorage for challenges (ADDED)
-  useEffect(() => {
-    localStorage.setItem(
-      "completedChallenges",
-      JSON.stringify(completedChallenges)
-    );
+    localStorage.setItem("completedChallenges", JSON.stringify(completedChallenges));
   }, [completedChallenges]);
 
   useEffect(() => {
     localStorage.setItem("challengeScores", JSON.stringify(challengeScores));
   }, [challengeScores]);
+
+  // LocalStorage persistence for results (Added)
+  useEffect(() => {
+    localStorage.setItem("results", JSON.stringify(results));
+  }, [results]);
 
   const value = {
     topicId,
@@ -64,6 +58,8 @@ const MyDeckProvider = ({ children }) => {
     setCompletedChallenges,
     challengeScores,
     setChallengeScores,
+    results, // Provide results to components
+    setResults, // Allow components to set results
   };
 
   return (
