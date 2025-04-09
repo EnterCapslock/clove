@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import LandingPage from "./pages/landing page/LandingPage";
 import LoginSignupPage from "./pages/login signup page/Forms";
 import DashboardPage from "./pages/DashboardPage";
+import ProgressPage from "./pages/ProgressPage";
 import MyDeckPage from "./pages/MyDeck/MyDeckPage";
 import PreAssessmentPage from "./components/PreAssessment";
 import AssessmentResultPage from "./components/AssessmentResult";
@@ -36,6 +37,14 @@ function App() {
               element={
                 <ProtectedRoutes>
                   <DashboardPage />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/progress"
+              element={
+                <ProtectedRoutes>
+                  <ProgressPage />
                 </ProtectedRoutes>
               }
             />
