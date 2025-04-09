@@ -4,6 +4,8 @@ import LandingPage from "./pages/landing page/LandingPage";
 import LoginSignupPage from "./pages/login signup page/Forms";
 import DashboardPage from "./pages/DashboardPage";
 import MyDeckPage from "./pages/MyDeck/MyDeckPage";
+import PreAssessmentPage from "./components/PreAssessment";
+import AssessmentResultPage from "./components/AssessmentResult";
 import SubtopicSelectionPage from "./pages/MyDeck/SubtopicSelectionPage";
 import LessonPage from "./pages/Lesson and Challenges Page/LessonPage";
 import ChallengesPage from "./pages/Lesson and Challenges Page/ChallengesPage";
@@ -42,6 +44,22 @@ function App() {
               element={
                 <ProtectedRoutes>
                   <MyDeckPage />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/my-deck/:topicId/pre-assessment"
+              element={
+                <ProtectedRoutes>
+                  <PreAssessmentPage />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/my-deck/:topicId/pre-assessment/result"
+              element={
+                <ProtectedRoutes>
+                  <AssessmentResultPage />
                 </ProtectedRoutes>
               }
             />
