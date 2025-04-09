@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import ReactConfetti from 'react-confetti'; // Import the confetti component
 import styles from '../css modules/components/AssessmentResult.module.scss';
 
 const AssessmentResult = () => {
   const { state } = useLocation(); // Get state from the location
   const { userAnswers, questionsToAsk, topicId } = state || {}; // Destructure state
   const navigate = useNavigate();
+
+  // For tracking the size of the .resultsContainer
+  const resultsContainerRef = useRef(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [containerHeight, setContainerHeight] = useState(0);
 
   // Log the received state data for debugging
   console.log("State data received: ", state);
@@ -47,9 +53,33 @@ const AssessmentResult = () => {
     navigate(`/my-deck/${topicId}`);
   };
 
+  // Effect to measure the dimensions of the results container after mount
+  useEffect(() => {
+    if (resultsContainerRef.current) {
+      setContainerWidth(resultsContainerRef.current.offsetWidth);
+      setContainerHeight(resultsContainerRef.current.offsetHeight);
+    }
+  }, []);
+
   return (
     <div className={styles.pageContainer}>
-      <div className={styles.resultsContainer}>
+      <div className={styles.resultsContainer} ref={resultsContainerRef}>
+        {/* Confetti effect only inside the card */}
+        {containerWidth > 0 && containerHeight > 0 && (
+          <ReactConfetti 
+            width={containerWidth}
+            height={containerHeight}
+            numberOfPieces={200}
+            gravity={0.05}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              zIndex: 10, // Ensure it's above content
+            }}
+          />
+        )}
+
         <div className={styles.holographicEffect}></div>
         <div className={styles.resultsHeader}>
           <h1 className={styles.resultsTitle}>Test Results</h1>

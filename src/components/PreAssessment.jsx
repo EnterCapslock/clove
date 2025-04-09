@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'; 
-import { questions } from './questions.js';  
-import styles from '../css modules/components/PreAssessment.module.scss'; 
+import { useNavigate, useParams } from 'react-router-dom';
+import { questions } from './questions.js';
+import styles from '../css modules/components/PreAssessment.module.scss';
 
 const getRandomQuestions = () => {
   const allQuestions = [
@@ -28,13 +28,12 @@ const PreAssessment = () => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
-  const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
-  const [isAnswered, setIsAnswered] = useState(false);  
+  const [isAnswered, setIsAnswered] = useState(false);  // Track if an answer was selected
   const [questionsToAsk, setQuestionsToAsk] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { topicId } = useParams(); 
-  const navigate = useNavigate(); 
+  const { topicId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const randomQuestions = getRandomQuestions();
@@ -49,46 +48,44 @@ const PreAssessment = () => {
   const currentQuestion = questionsToAsk[questionIndex];
 
   const handleOptionClick = (option) => {
-    if (isAnswered) return;
+    if (isAnswered) return; // Don't allow selection after answering
+
     const isCorrect = option === currentQuestion.answer;
-    setIsAnswerCorrect(isCorrect);
+    setSelectedOption(option);
     setIsAnswered(true);
-  
-    let category = "";  
+
+    let category = '';
     if (currentQuestion.id >= 5) {
       category = 'Basic Loops';
-    } else if (currentQuestion.id >= 10) { 
+    } else if (currentQuestion.id >= 10) {
       category = 'Conditional Statements';
     } else {
       category = 'Advanced Loops';
     }
-  
-    setUserAnswers(prev => [
-      ...prev, 
-      { 
-        questionId: currentQuestion.id, 
-        selectedOption: option, 
+
+    setUserAnswers((prev) => [
+      ...prev,
+      {
+        questionId: currentQuestion.id,
+        selectedOption: option,
         isCorrect,
-        category  // Add the category here
-      }
+        category,
+      },
     ]);
   };
-  
 
   const handleNextQuestion = () => {
     if (questionIndex < questionsToAsk.length - 1) {
       setQuestionIndex(questionIndex + 1);
       setProgress((prevProgress) => prevProgress + 100 / questionsToAsk.length);
       setSelectedOption(null);
-      setIsAnswerCorrect(null);
       setIsAnswered(false);
     } else {
-      // After finishing the test, navigate to the result page with user answers
       navigate(`/my-deck/${topicId}/pre-assessment/result`, {
         state: {
-          userAnswers, // Pass user answers to the result page
-          questionsToAsk, // Pass questionsToAsk to the result page
-          topicId, // Pass topicId to the result page
+          userAnswers,
+          questionsToAsk,
+          topicId,
         },
       });
     }
@@ -101,14 +98,20 @@ const PreAssessment = () => {
           <div className={styles.progressFill} style={{ width: `${progress}%` }}></div>
         </div>
         <div className={styles.questionCount}>
-          Question {questionIndex + 1} out of {questionsToAsk.length}
+          Question {questionIndex + 1} of {questionsToAsk.length}
         </div>
-        <div className={styles.questionText} dangerouslySetInnerHTML={{ __html: currentQuestion.question }} />
+        <div
+          className={styles.questionText}
+          dangerouslySetInnerHTML={{ __html: currentQuestion.question }}
+        />
         <div className={styles.optionsContainer}>
           {currentQuestion.options.map((option, index) => (
             <div
               key={index}
-              className={`${styles.option} ${selectedOption === option ? (isAnswerCorrect ? styles.correct : styles.incorrect) : ''} ${isAnswered ? styles.disabled : ''}`}
+              className={`${styles.option} 
+                ${selectedOption === option ? (currentQuestion.answer === option ? styles.correct : styles.incorrect) : ''} 
+                ${isAnswered ? styles.disabled : ''} 
+                ${selectedOption === option && isAnswered ? styles.shake : ''}`}
               onClick={() => handleOptionClick(option)}
             >
               {option}
