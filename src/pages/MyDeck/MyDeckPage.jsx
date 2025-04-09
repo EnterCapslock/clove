@@ -28,7 +28,7 @@ const topicsData = [
     name: "Operators",
     description: "Learn about Java concepts.",
     image: ConditionalsLoopsImg,
-    locked: false,
+    locked: true,
   },
   {
     id: "topic3",

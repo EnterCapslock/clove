@@ -87,7 +87,7 @@ export default function SubtopicSelectionPage() {
 
     const subtopic = popoverContent[subtopicKey];
     setSubtopicId(subtopic.id);
-    navigate(`/my-deck/${topicId}/${subtopic.id}`);
+    navigate(`/lesson/${topicId}/${subtopic.id}`);
   };
 
   const getPreviousSubtopic = (currentKey) => {
