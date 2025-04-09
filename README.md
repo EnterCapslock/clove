@@ -23,6 +23,7 @@ npm install bootstrap react-bootstrap
 npm install react-dom
 npm install recharts
 npm install framer-motion
+npm install react-confetti
 ```
 
 ## Running the Project
