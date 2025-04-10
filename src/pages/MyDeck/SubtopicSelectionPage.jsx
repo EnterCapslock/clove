@@ -128,16 +128,43 @@ export default function SubtopicSelectionPage() {
     );
   };
 
+  // Stars animation effect
+  useEffect(() => {
+    const createStars = () => {
+      const stars = document.getElementById("stars");
+      if (!stars) return;
+
+      stars.innerHTML = "";
+
+      for (let i = 0; i < 200; i++) {
+        const star = document.createElement("div");
+        star.style.position = "absolute";
+        star.style.width = `${Math.random() * 3}px`;
+        star.style.height = star.style.width;
+        star.style.backgroundColor = "white";
+        star.style.borderRadius = "50%";
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.opacity = Math.random();
+        star.style.animation = `twinkle ${
+          2 + Math.random() * 3
+        }s infinite alternate`;
+        stars.appendChild(star);
+      }
+    };
+
+    createStars();
+  }, []);
+
   return (
-    <Container fluid className={`${styles.topicDetailContent} pt-2 m-0`}>
+    <Container
+      fluid
+      className={`${styles.topicDetailContent} ${styles.lessonWrapper} pt-2 m-0`}
+    >
       <TitleAndProfile topic={"Loops"} />
 
-      <div
-        className={`${styles.scrollableContainer}`}
-        style={{
-          backgroundImage: `url(${background})`,
-        }}
-      >
+      <div className={styles.stars} id="stars"></div>
+      <div className={`${styles.scrollableContainer}`}>
         <Row>
           <Col
             xs={12}
