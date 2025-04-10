@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import confetti from "canvas-confetti";
 
-const CosmicJavaLesson = () => {
+const TrainingPage = () => {
   const [code, setCode] = useState(`// Example:
 int crewCount = 5;
 double fuelLevel = 87.5;
@@ -661,4 +661,4 @@ boolean enginesOn = true;
   );
 };
 
-export default CosmicJavaLesson;
+export default TrainingPage;
