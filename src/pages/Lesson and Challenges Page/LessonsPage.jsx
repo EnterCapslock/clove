@@ -137,7 +137,7 @@ const LessonsPage = () => {
               onClick={handleStartChallenges}
             >
               <span className={styles.icon}>⚡</span>
-              Start Challenges
+              Start Training
             </Button>
           </div>
         </div>
