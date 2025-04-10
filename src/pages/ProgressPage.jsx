@@ -13,22 +13,17 @@ import {
   faStar,
   faStarHalfAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import styles from "../css modules/pages/Progress.module.scss";
+import styles from "../css modules/pages/ProgressPage.module.scss";
+import TitleAndProfile from "../components/TitleAndProfile";
 
 const ProgressPage = () => {
   return (
     <main className={styles.progressContent}>
-      <header className={styles.pageHeader}>
-        <div>
-          <h1>Learning Progress</h1>
-          <p>Detailed analysis of your learning performance</p>
-        </div>
-        <img
-          className={styles.profile}
-          src="https://i.pravatar.cc/48?img=12"
-          alt="User avatar"
-        />
-      </header>
+      <TitleAndProfile
+        nonColored={"Learning"}
+        colored={"Progress"}
+        description={"Detailed analysis of your learning performance 📊"}
+      />
 
       {/* Learning Mode Performance Section */}
       <section className={styles.learningModesSection}>

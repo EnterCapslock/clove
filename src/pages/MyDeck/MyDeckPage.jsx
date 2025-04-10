@@ -44,7 +44,9 @@ const TopicCard = React.memo(({ topic, onClick }) => (
     sm={6}
     md={4}
     lg={3}
-    className={`${styles.floatCard} ${topic.locked ? styles.lockedCard : ""} p-0 mt-3`}
+    className={`${styles.floatCard} ${
+      topic.locked ? styles.lockedCard : ""
+    } p-0 mt-3`}
   >
     <div className={styles.holographicEffect}></div>
     <div className={styles.cardContent}>
@@ -74,7 +76,7 @@ export default function MyDeckPage() {
     (topic) => {
       console.log(preAssessmentTaken); // Check the value of preAssessmentTaken
       console.log("Topic clicked:", topic); // Check the topic details
-  
+
       if (!preAssessmentTaken[topic.id]) {
         // If pre-assessment has not been taken for the topic, redirect to pre-assessment
         navigate(`/my-deck/${topic.id}/pre-assessment`);
@@ -84,12 +86,22 @@ export default function MyDeckPage() {
       }
     },
     [navigate, preAssessmentTaken]
-  );  
+  );
 
   return (
-    <Container fluid className={`${styles.myDeckWrapper} p-2 ps-4 pe-4 text-white d-flex flex-column`}>
-      <TitleAndProfile title="Hello John Doe!" />
-      <div className={`${styles.floatContainer} mt-3 p-0 d-flex flex-wrap justify-content-center`}>
+    <Container
+      fluid
+      className={`${styles.myDeckWrapper} text-white d-flex flex-column`}
+    >
+      <TitleAndProfile
+        nonColored={"Lesson "}
+        colored={"Cards"}
+        description={"Master concepts one card at a time with built-in practice ✨"}
+      />
+
+      <div
+        className={`${styles.floatContainer} mt-3 p-0 d-flex flex-wrap justify-content-center`}
+      >
         {topicsData.map((topic) => (
           <TopicCard key={topic.id} topic={topic} onClick={handleTopicClick} />
         ))}

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 :root {
   --primary: #8b5cf6;
@@ -15,10 +15,20 @@
   --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
+/* Base styles */
 .container {
+  font-family: "Inter", sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
   display: flex;
   width: 100%;
+  min-height: 100vh;
+  flex-direction: column;
   flex-grow: 1;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Enhanced Sidebar */
@@ -31,7 +41,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  border-right: 1px solid rgba(255,255,255,0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
 }
 
@@ -120,7 +130,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.5rem
 }
 
 .headerLeft h2 {
@@ -178,7 +188,7 @@ header {
 }
 
 .card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -210,13 +220,13 @@ header {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(255, 255, 255, 0.15);
   border-radius: 0.5rem;
   transition: all 0.3s ease;
 }
 
 .card.highlight a:hover {
-  background-color: rgba(255,255,255,0.25);
+  background-color: rgba(255, 255, 255, 0.25);
   transform: translateX(5px);
 }
 
@@ -334,7 +344,7 @@ header {
   height: 180px;
   border-radius: 50%;
   background: conic-gradient(
-    var(--primary) 0% 75%, 
+    var(--primary) 0% 75%,
     var(--surface-light) 75% 100%
   );
   position: relative;
@@ -484,18 +494,4 @@ header {
     height: 28px;
     font-size: 0.8rem;
   }
-}
-
-/* Base styles */
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--background);
-  color: var(--text-primary);
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  line-height: 1.5;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }

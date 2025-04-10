@@ -9,6 +9,7 @@ import PreAssessmentPage from "./components/PreAssessment";
 import AssessmentResultPage from "./components/AssessmentResult";
 import SubtopicSelectionPage from "./pages/MyDeck/SubtopicSelectionPage";
 import LessonsPage from "./pages/Lesson and Challenges Page/LessonsPage";
+import TrainingPage from "./pages/Lesson and Challenges Page/TrainingPage";
 import ChallengesPage from "./pages/Lesson and Challenges Page/ChallengesPage";
 import ResultsPage from "./pages/Lesson and Challenges Page/ResultsPage";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -88,8 +89,18 @@ function App() {
                 </ProtectedRoutes>
               }
             />
+
             <Route
-              path="/my-deck/:topicId/:subtopicId/challenges"
+              path="/lesson/:topicId/:subtopicId/training"
+              element={
+                <ProtectedRoutes>
+                  <TrainingPage />
+                </ProtectedRoutes>
+              }
+            />
+
+            <Route
+              path="/lesson/:topicId/:subtopicId/challenges"
               element={
                 <ProtectedRoutes>
                   <ChallengesPage />

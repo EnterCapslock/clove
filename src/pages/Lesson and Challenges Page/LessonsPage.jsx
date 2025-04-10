@@ -47,9 +47,10 @@ const LessonsPage = () => {
     createStars();
   }, []);
 
+
   const handleStartChallenges = () => {
-    setLessonCompleted(subtopicId);
-    navigate(`/my-deck/${topicId}/${subtopicId}/challenges`);
+    // setLessonCompleted(subtopicId);
+    navigate(`/lesson/${topicId}/${subtopicId}/training`);
   };
 
   return (
