@@ -1,13 +1,24 @@
 $font-family: "Open Sauce One", "Roboto", sans-serif;
 
 .myDeckWrapper {
-  min-height: 100vh;
-  background-color: #212529;
-  overflow: hidden;
+  // min-height: 100vh;
+  // background-color: #212529;
+  // overflow: hidden;
+  // display: flex;
+  // flex-direction: column;
+  // color: white;
+  // padding: 20px;
+
+  flex-grow: 1;
+  padding: 2.5rem;
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  color: white;
-  padding: 20px;
+  gap: 2.5rem;
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
 }
 
 .pageTitle {
@@ -20,7 +31,10 @@ $font-family: "Open Sauce One", "Roboto", sans-serif;
 /* Float Container */
 .floatContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(750px, 1fr)); /* Increased min-width */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(750px, 1fr)
+  ); /* Increased min-width */
   gap: 30px;
   width: 100%;
   max-width: 1200px;
@@ -69,7 +83,7 @@ $font-family: "Open Sauce One", "Roboto", sans-serif;
 }
 
 .floatCard::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -180,7 +194,7 @@ $font-family: "Open Sauce One", "Roboto", sans-serif;
 }
 
 .startButton::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -229,19 +243,31 @@ $font-family: "Open Sauce One", "Roboto", sans-serif;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes hologram {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 200% 200%; }
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 200%;
+  }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .floatContainer {
-    grid-template-columns: repeat(auto-fit, minmax(800px, 1fr)); /* Further increased min-width for small screens */
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(800px, 1fr)
+    ); /* Further increased min-width for small screens */
     gap: 20px; /* Reduced gap on small screens */
   }
 

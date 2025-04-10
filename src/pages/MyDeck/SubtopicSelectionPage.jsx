@@ -161,59 +161,59 @@ export default function SubtopicSelectionPage() {
       fluid
       className={`${styles.topicDetailContent} ${styles.lessonWrapper} pt-2 m-0`}
     >
-      <TitleAndProfile topic={"Loops"} />
+      <TitleAndProfile colored={"Loops"} />
 
       <div className={styles.stars} id="stars"></div>
-      <div className={`${styles.scrollableContainer}`}>
-        <Row>
-          <Col
-            xs={12}
-            className="text-center text-white p-3"
+      {/* <div className={`${styles.scrollableContainer}`}> */}
+      <Row>
+        <Col
+          xs={12}
+          className="text-center text-white p-3"
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.1)", // Slight white overlay
+            backdropFilter: "blur(3px)", // Blur effect
+            borderRadius: "40px", // Rounded corners for a nice effect
+          }}
+        >
+          <p
+            className="ps-5 pe-5 pb-2 pt-2 p-0 m-0"
             style={{
-              backgroundColor: "rgba(255, 255, 255, 0.1)", // Slight white overlay
-              backdropFilter: "blur(3px)", // Blur effect
-              borderRadius: "40px", // Rounded corners for a nice effect
+              whiteSpace: "pre-wrap",
+              textAlign: "justify",
+              borderBottom: "2px dashed white",
+              borderTop: "2px dashed white",
             }}
           >
-            <p
-              className="ps-5 pe-5 pb-2 pt-2 p-0 m-0"
-              style={{
-                whiteSpace: "pre-wrap",
-                textAlign: "justify",
-                borderBottom: "2px dashed white",
-                borderTop: "2px dashed white",
-              }}
-            >
-              Welcome to CyberSpace Outpost Omega, a futuristic hub on the edge
-              of space. Your mission is to restore power to the outpost’s
-              failing energy grid and protect its data vaults. As a skilled
-              cyber-engineer, your ability with loops is key to automating tasks
-              and managing resources. The outpost’s smart systems are breaking
-              down. With lights flickering and security failing, you must dive
-              into the code, set up loops, and restore order before the colony’s
-              important data is lost.
-            </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col
-            xs={4}
-            className="p-0 m-0  d-flex align-items-end justify-content-end "
+            Welcome to CyberSpace Outpost Omega, a futuristic hub on the edge of
+            space. Your mission is to restore power to the outpost’s failing
+            energy grid and protect its data vaults. As a skilled
+            cyber-engineer, your ability with loops is key to automating tasks
+            and managing resources. The outpost’s smart systems are breaking
+            down. With lights flickering and security failing, you must dive
+            into the code, set up loops, and restore order before the colony’s
+            important data is lost.
+          </p>
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          xs={4}
+          className="p-0 m-0  d-flex align-items-end justify-content-end "
+        >
+          <Image
+            fluid
+            src={rightPath}
+            style={{ width: "200px", objectFit: "cover" }}
+          />
+        </Col>
+        <Col xs={4} className="p-5 text-white text-center">
+          <h5>Introduction To Loops</h5>
+          <OverlayTrigger
+            trigger={["hover", "focus"]}
+            placement="top"
+            overlay={renderPopover("intro")}
           >
-            <Image
-              fluid
-              src={rightPath}
-              style={{ width: "200px", objectFit: "cover" }}
-            />
-          </Col>
-          <Col xs={4} className="p-5 text-white text-center">
-            <h5>Introduction To Loops</h5>
-            <OverlayTrigger
-              trigger={["hover", "focus"]}
-              placement="top"
-              overlay={renderPopover("intro")}
-            >
-              {/* <Image
+            {/* <Image
                 src={intro}
                 fluid
                 style={{
@@ -222,128 +222,124 @@ export default function SubtopicSelectionPage() {
                 }}
                 onClick={() => handleSubtopicClick("intro")}
               /> */}
-              <Image
-                src={intro}
-                fluid
-                style={{
-                  cursor: isSubtopicLocked("intro") ? "not-allowed" : "pointer",
-                  opacity: isSubtopicLocked("intro") ? 0.5 : 1,
-                  filter: isSubtopicLocked("intro") ? "grayscale(1)" : "none",
-                }}
-                onClick={() =>
-                  !isSubtopicLocked("intro") && handleSubtopicClick("intro")
-                }
-              />
-            </OverlayTrigger>
-          </Col>
-          <Col xs={4}></Col>
-        </Row>
-        <Row>
-          <Col xs={4} className="p-5  text-white text-center">
-            <h5>For Loops</h5>
-            <OverlayTrigger
-              trigger={["hover", "focus"]}
-              placement="top"
-              overlay={renderPopover("forloops")}
-            >
-              <Image
-                src={subtopic1}
-                fluid
-                style={{
-                  cursor: isSubtopicLocked("forloops")
-                    ? "not-allowed"
-                    : "pointer",
-                  opacity: isSubtopicLocked("forloops") ? 0.5 : 1,
-                  filter: isSubtopicLocked("forloops")
-                    ? "grayscale(1)"
-                    : "none",
-                }}
-                onClick={() =>
-                  !isSubtopicLocked("forloops") &&
-                  handleSubtopicClick("forloops")
-                }
-              />
-            </OverlayTrigger>
-          </Col>
-          <Col
-            xs={4}
-            className="pt-5 p-0 m-0  d-flex align-items-end justify-content-start"
+            <Image
+              src={intro}
+              fluid
+              style={{
+                cursor: isSubtopicLocked("intro") ? "not-allowed" : "pointer",
+                opacity: isSubtopicLocked("intro") ? 0.5 : 1,
+                filter: isSubtopicLocked("intro") ? "grayscale(1)" : "none",
+              }}
+              onClick={() =>
+                !isSubtopicLocked("intro") && handleSubtopicClick("intro")
+              }
+            />
+          </OverlayTrigger>
+        </Col>
+        <Col xs={4}></Col>
+      </Row>
+      <Row>
+        <Col xs={4} className="p-5  text-white text-center">
+          <h5>For Loops</h5>
+          <OverlayTrigger
+            trigger={["hover", "focus"]}
+            placement="top"
+            overlay={renderPopover("forloops")}
           >
             <Image
+              src={subtopic1}
               fluid
-              src={middlePath}
-              style={{ width: "300px", objectFit: "cover" }}
+              style={{
+                cursor: isSubtopicLocked("forloops")
+                  ? "not-allowed"
+                  : "pointer",
+                opacity: isSubtopicLocked("forloops") ? 0.5 : 1,
+                filter: isSubtopicLocked("forloops") ? "grayscale(1)" : "none",
+              }}
+              onClick={() =>
+                !isSubtopicLocked("forloops") && handleSubtopicClick("forloops")
+              }
             />
-          </Col>
-          <Col xs={4}></Col>
-        </Row>
-        <Row>
-          <Col xs={4}></Col>
-          <Col xs={4} className="p-5  text-white text-center">
-            <h5>While Loops</h5>
-            <OverlayTrigger
-              trigger={["hover", "focus"]}
-              placement="top"
-              overlay={renderPopover("whileloops")}
-            >
-              <Image
-                src={subtopic2}
-                fluid
-                style={{
-                  cursor: isSubtopicLocked("whileloops")
-                    ? "not-allowed"
-                    : "pointer",
-                  opacity: isSubtopicLocked("whileloops") ? 0.5 : 1,
-                  filter: isSubtopicLocked("whileloops")
-                    ? "grayscale(1)"
-                    : "none",
-                }}
-                onClick={() =>
-                  !isSubtopicLocked("whileloops") &&
-                  handleSubtopicClick("whileloops")
-                }
-              />
-            </OverlayTrigger>
-          </Col>
-          <Col xs={4} className="pt-5 p-0 m-0  d-flex align-items-end">
+          </OverlayTrigger>
+        </Col>
+        <Col
+          xs={4}
+          className="pt-5 p-0 m-0  d-flex align-items-end justify-content-start"
+        >
+          <Image
+            fluid
+            src={middlePath}
+            style={{ width: "300px", objectFit: "cover" }}
+          />
+        </Col>
+        <Col xs={4}></Col>
+      </Row>
+      <Row>
+        <Col xs={4}></Col>
+        <Col xs={4} className="p-5  text-white text-center">
+          <h5>While Loops</h5>
+          <OverlayTrigger
+            trigger={["hover", "focus"]}
+            placement="top"
+            overlay={renderPopover("whileloops")}
+          >
             <Image
+              src={subtopic2}
               fluid
-              src={leftPath}
-              style={{ width: "120px", objectFit: "cover" }}
+              style={{
+                cursor: isSubtopicLocked("whileloops")
+                  ? "not-allowed"
+                  : "pointer",
+                opacity: isSubtopicLocked("whileloops") ? 0.5 : 1,
+                filter: isSubtopicLocked("whileloops")
+                  ? "grayscale(1)"
+                  : "none",
+              }}
+              onClick={() =>
+                !isSubtopicLocked("whileloops") &&
+                handleSubtopicClick("whileloops")
+              }
             />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={4}></Col>
-          <Col xs={4}></Col>
-          <Col xs={4} className="p-5 text-white text-center">
-            <h5>Nested Loops</h5>
-            <OverlayTrigger
-              trigger={["hover", "focus"]}
-              placement="top"
-              overlay={renderPopover("nestedloops")}
-            >
-              <Image
-                src={subtopic3}
-                fluid
-                style={{
-                  cursor: isSubtopicLocked("nestedloops")
-                    ? "not-allowed"
-                    : "pointer",
-                  opacity: isSubtopicLocked("nestedloops") ? 0.5 : 1,
-                  filter: isSubtopicLocked("nestedloops")
-                    ? "grayscale(1)"
-                    : "none",
-                }}
-                onClick={() =>
-                  !isSubtopicLocked("nestedloops") &&
-                  handleSubtopicClick("nestedloops")
-                }
-              />
-            </OverlayTrigger>
-          </Col>
-        </Row>
-      </div>
+          </OverlayTrigger>
+        </Col>
+        <Col xs={4} className="pt-5 p-0 m-0  d-flex align-items-end">
+          <Image
+            fluid
+            src={leftPath}
+            style={{ width: "120px", objectFit: "cover" }}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={4}></Col>
+        <Col xs={4}></Col>
+        <Col xs={4} className="p-5 text-white text-center">
+          <h5>Nested Loops</h5>
+          <OverlayTrigger
+            trigger={["hover", "focus"]}
+            placement="top"
+            overlay={renderPopover("nestedloops")}
+          >
+            <Image
+              src={subtopic3}
+              fluid
+              style={{
+                cursor: isSubtopicLocked("nestedloops")
+                  ? "not-allowed"
+                  : "pointer",
+                opacity: isSubtopicLocked("nestedloops") ? 0.5 : 1,
+                filter: isSubtopicLocked("nestedloops")
+                  ? "grayscale(1)"
+                  : "none",
+              }}
+              onClick={() =>
+                !isSubtopicLocked("nestedloops") &&
+                handleSubtopicClick("nestedloops")
+              }
+            />
+          </OverlayTrigger>
+        </Col>
+      </Row>
     </Container>
   );
 }
