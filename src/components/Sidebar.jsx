@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import { Container, Row, Col, Card, ProgressBar } from "react-bootstrap";
-import { FaTh, FaChartBar, FaLayerGroup, FaSignOutAlt } from "react-icons/fa";
+import { Image } from "react-bootstrap";
+import {
+  FaHome as FaTh,
+  FaChartLine as FaChartBar,
+  FaLayerGroup,
+  FaSignOutAlt,
+} from "react-icons/fa";
 import { PiSidebarBold } from "react-icons/pi";
 import styles from "../css modules/components/Sidebar.module.scss";
 import CloveLogo from "../assets/images/CloveLogo.png";
-
-import Image from "react-bootstrap/Image";
 
 const navItems = [
   { to: "/dashboard", icon: <FaTh />, label: "Dashboard" },
@@ -20,25 +23,19 @@ export default function Sidebar() {
   const location = useLocation();
 
   return (
-    <div
-      className={`${styles.sidebar} ${expanded ? styles.expanded : ""} p-0 m-0`}
-    >
+    <div className={`${styles.sidebar} ${expanded ? styles.expanded : ""}`}>
       {/* Logo Section */}
-      <Col
-        className={`${styles.logoSection} mt-2 mb-2`}
-        // style={{ backgroundColor: "green" }}
-      >
-        {expanded && <span className={styles.logo}>CLOVE</span>}
-        <Image
-          fluid
-          src={CloveLogo}
-          className={styles.logoImg}
-          //style={{ backgroundColor: "violet" }}
-        />
-      </Col>
+      <div className={styles.logoSection}>
+        <div className={styles.logoContainer}>
+          <div className={styles.logoIcon}>
+            <Image fluid src={CloveLogo} className={styles.logoImg} />
+          </div>
+          {expanded && <span className={styles.logoText}>CLOVE</span>}
+        </div>
+      </div>
 
       {/* Navigation Links */}
-      <Nav className="flex-column flex-grow-1">
+      <Nav className={`${styles.navContainer} flex-column`}>
         {navItems.map(({ to, icon, label }) => (
           <Nav.Link
             as={Link}
@@ -48,32 +45,32 @@ export default function Sidebar() {
               location.pathname === to ? styles.active : ""
             }`}
           >
-            {icon}
-            {expanded && <span>{label}</span>}
+            <span className={styles.navIcon}>{icon}</span>
+            {expanded && <span className={styles.navLabel}>{label}</span>}
           </Nav.Link>
         ))}
       </Nav>
 
       {/* Log Out Button */}
-      <Nav.Link
-        as={Link}
-        to="/logout"
-        className={`${styles.navItem} ${styles.logout}`}
-      >
-        <FaSignOutAlt />
-        {expanded && <span>Log out</span>}
-      </Nav.Link>
+      <div className={styles.bottomSection}>
+        <Nav.Link
+          as={Link}
+          to="/logout"
+          className={`${styles.navItem} ${styles.logout}`}
+        >
+          <span className={styles.navIcon}>
+            <FaSignOutAlt />
+          </span>
+          {expanded && <span className={styles.navLabel}>Log out</span>}
+        </Nav.Link>
 
-      {/* Sidebar Toggle */}
-      <div
-        className={styles.toggleIcon}
-        //style={{ backgroundColor: "violet" }}
-      >
-        <PiSidebarBold
-          className="me-2"
+        {/* Sidebar Toggle */}
+        <div
+          className={styles.toggleIcon}
           onClick={() => setExpanded(!expanded)}
-          style={{ cursor: "pointer" }}
-        />
+        >
+          <PiSidebarBold />
+        </div>
       </div>
     </div>
   );

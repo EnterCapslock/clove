@@ -1,89 +1,193 @@
-$sidebar-collapsed-width: 60px;
+$sidebar-collapsed-width: 80px;
 $sidebar-expanded-width: 250px;
+$primary: #8b5cf6;
+$primary-light: #a78bfa;
+$primary-dark: #7c3aed;
+$surface: #1e1e2a;
+$surface-light: #2e2e3a;
+$text-primary: #f8fafc;
+$text-secondary: #94a3b8;
+$danger: #ef4444;
 
 .sidebar {
   height: 100vh;
-  width: $sidebar-collapsed-width;
-  transition: width 0.3s;
-  background-color: #212529;
-  color: #fff;
+  width: $sidebar-expanded-width;
+  background-color: $surface;
+  color: $text-primary;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  transition: all 0.3s ease;
   overflow: hidden;
+  z-index: 1000;
+
+  &.expanded {
+    width: $sidebar-expanded-width;
+  }
+
+  &:not(.expanded) {
+    width: $sidebar-collapsed-width;
+  }
 }
 
-.expanded {
-  width: $sidebar-expanded-width;
-}
-
-/* Logo */
+/* Logo Section */
 .logoSection {
-  max-height: 50px;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.logo {
-  font-size: 40px;
-  color: #ffff;
 }
 
 .logoImg {
-  width: 40px;
+  width: 100%;
   height: auto;
-  margin-left: 5px;
-  margin-right: 5px;
+  object-fit: contain;
 }
 
-/* Navigation Items */
+.logoText {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $primary-light;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+/* Navigation */
+.navContainer {
+  flex-grow: 1;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .navItem {
-  padding: 10px 16px;
   display: flex;
   align-items: center;
-  color: #adb5bd;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: $text-secondary;
   text-decoration: none;
-  transition: background-color 0.3s, color 0.3s;
-
-  svg {
-    margin-right: 12px;
-    width: 18px;
-    height: 18px;
-  }
-
-  &:hover,
-  &.active {
-    background-color: #343a40;
-    color: #fff;
-  }
-}
-
-/* When sidebar is collapsed */
-.sidebar:not(.expanded) .navItem {
-  justify-content: center;
-  padding: 10px;
-  text-align: center;
-
-  svg {
-    margin: 0;
-  }
-}
-
-/* Logout */
-.logout {
-  margin-top: auto;
-}
-
-/* Toggle Button */
-.toggleIcon {
-  padding: 10px;
-  text-align: end;
-  font-size: 24px;
-  color: #adb5bd;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 
   &:hover {
-    color: #fff;
+    background-color: $surface-light;
+    color: $text-primary;
+  }
+
+  &.active {
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.2), transparent);
+    color: $primary-light;
+    border-left: 3px solid $primary;
+  }
+}
+
+.navIcon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.navLabel {
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+/* Bottom Section */
+.bottomSection {
+  margin-top: auto;
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.logout {
+  color: $danger;
+  font-weight: 600;
+
+  &:hover {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+  }
+}
+
+.toggleIcon {
+  color: $text-secondary;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: $text-primary;
+    background-color: $surface-light;
+  }
+
+  svg {
+    font-size: 1.25rem;
+  }
+}
+
+/* Collapsed State */
+.sidebar:not(.expanded) {
+  .logoText,
+  .navLabel {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+  }
+
+  .logoContainer {
+    justify-content: center;
+  }
+
+  .navItem {
+    justify-content: center;
+    padding: 0.75rem;
+  }
+
+  .toggleIcon {
+    justify-content: center;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    height: 100%;
+
+    &:not(.expanded) {
+      width: 0;
+      overflow: hidden;
+    }
+
+    &.expanded {
+      width: $sidebar-expanded-width;
+    }
   }
 }
