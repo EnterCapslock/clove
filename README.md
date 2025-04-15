@@ -21,6 +21,7 @@ Install required packages:
 ```bash
 npm install bootstrap react-bootstrap
 npm install react-dom
+npm install react-router-dom
 npm install recharts
 npm install framer-motion
 npm install react-confetti
