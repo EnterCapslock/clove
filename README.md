@@ -20,6 +20,7 @@ npm install
 Install required packages:
 ```bash
 npm install bootstrap react-bootstrap
+npm install sass
 npm install react-dom
 npm install react-router-dom
 npm install recharts
