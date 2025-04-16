@@ -26,6 +26,10 @@ npm install react-router-dom
 npm install recharts
 npm install framer-motion
 npm install react-confetti
+
+npm install --save @fortawesome/fontawesome-svg-core
+npm install --save @fortawesome/free-solid-svg-icons
+npm install --save @fortawesome/react-fontawesome
 ```
 
 ## Running the Project
